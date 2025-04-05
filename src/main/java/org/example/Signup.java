@@ -10,6 +10,7 @@ public class Signup extends JFrame {
     JLabel signUpTitle, personalDetails, labelFirstName, labelLastName, labelDOB, labelGender;
     JTextField textFirstName, textLastName;
     JDateChooser chooseDate;
+    JButton button;
 
     Signup() {
         super ("APPLICATION FORM");
