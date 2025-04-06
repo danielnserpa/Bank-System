@@ -10,7 +10,7 @@ public class Signup extends JFrame {
     JLabel signUpTitle, personalDetails, labelFirstName, labelLastName, labelDOB, labelGender;
     JTextField textFirstName, textLastName;
     JDateChooser chooseDate;
-    JButton button;
+    JRadioButton radioMale, radioFemale, radioOther;
 
     Signup() {
         super ("APPLICATION FORM");
@@ -69,6 +69,29 @@ public class Signup extends JFrame {
         labelGender.setFont(new Font("Raleway", Font.BOLD, 20));
         labelGender.setBounds(185, 340, 200, 30);
         add(labelGender);
+
+        radioMale = new JRadioButton("Male");
+        radioMale.setFont(new Font("Raleway", Font.BOLD, 14));
+        radioMale.setBounds(340, 340, 60, 30);
+        radioMale.setBackground(new Color(222, 255, 228));
+        add(radioMale);
+
+        radioFemale = new JRadioButton("Female");
+        radioFemale.setFont(new Font("Raleway", Font.BOLD, 14));
+        radioFemale.setBounds(420, 340, 80, 30);
+        radioFemale.setBackground(new Color(222, 255, 228));
+        add(radioFemale);
+
+        radioOther = new JRadioButton("Other");
+        radioOther.setFont(new Font("Raleway", Font.BOLD, 14));
+        radioOther.setBounds(510, 340, 70, 30);
+        radioOther.setBackground(new Color(222, 255, 228));
+        add(radioOther);
+
+        ButtonGroup group = new ButtonGroup();
+        group.add(radioMale);
+        group.add(radioFemale);
+        group.add(radioOther);
 
 
 
