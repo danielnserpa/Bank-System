@@ -2,15 +2,18 @@ package org.example;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
 import com.toedter.calendar.JDateChooser;
 
-public class Signup extends JFrame {
+public class Signup extends JFrame implements ActionListener {
 
     JLabel signUpTitle, personalDetails, labelFirstName, labelLastName, labelDOB, labelGender, labelEmail, labelPhone, labelAddress, labelPIN;
     JTextField textFirstName, textLastName, textEmail, textPhone, textAddress, textPIN;
     JDateChooser chooseDate;
     JRadioButton radioMale, radioFemale, radioOther;
+    JButton buttonNext;
 
     Signup() {
         super ("APPLICATION FORM");
@@ -133,6 +136,15 @@ public class Signup extends JFrame {
         textPIN.setBounds(340, 540, 350, 30);
         add(textPIN);
 
+        buttonNext = new JButton("Next");
+        buttonNext.setForeground(Color.BLACK);
+        buttonNext.setBounds(590, 605, 100, 30);
+        buttonNext.setFont(new Font("Arial", Font.BOLD, 14));
+        buttonNext.addActionListener(this);
+        add(buttonNext);
+
+
+
 
 
 
@@ -145,6 +157,11 @@ public class Signup extends JFrame {
         setSize(850, 800);
         setLocation(360, 40);
         setVisible(true);
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
     }
 
