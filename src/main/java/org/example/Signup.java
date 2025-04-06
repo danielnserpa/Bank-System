@@ -7,8 +7,8 @@ import com.toedter.calendar.JDateChooser;
 
 public class Signup extends JFrame {
 
-    JLabel signUpTitle, personalDetails, labelFirstName, labelLastName, labelDOB, labelGender;
-    JTextField textFirstName, textLastName;
+    JLabel signUpTitle, personalDetails, labelFirstName, labelLastName, labelDOB, labelGender, labelEmail, labelPhone, labelAddress, labelPIN;
+    JTextField textFirstName, textLastName, textEmail, textPhone, textAddress, textPIN;
     JDateChooser chooseDate;
     JRadioButton radioMale, radioFemale, radioOther;
 
@@ -92,6 +92,26 @@ public class Signup extends JFrame {
         group.add(radioMale);
         group.add(radioFemale);
         group.add(radioOther);
+
+        labelEmail = new JLabel("Email: ");
+        labelEmail.setFont(new Font("Raleway", Font.BOLD, 20));
+        labelEmail.setBounds(185, 390, 200, 30);
+        add(labelEmail);
+
+        labelPhone = new JLabel("Phone");
+        labelPhone.setFont(new Font("Raleway", Font.BOLD, 20));
+        labelPhone.setBounds(185, 440, 200, 30);
+        add(labelPhone);
+
+        labelAddress = new JLabel("Address: ");
+        labelAddress.setFont(new Font("Raleway", Font.BOLD, 20));
+        labelAddress.setBounds(185, 490, 200, 30);
+        add(labelAddress);
+
+        labelPIN = new JLabel("PIN: ");
+        labelPIN.setFont(new Font("Raleway", Font.BOLD, 20));
+        labelPIN.setBounds(185, 540, 200, 30);
+        add(labelPIN);
 
 
 
