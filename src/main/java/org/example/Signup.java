@@ -98,20 +98,42 @@ public class Signup extends JFrame {
         labelEmail.setBounds(185, 390, 200, 30);
         add(labelEmail);
 
+        textEmail = new JTextField();
+        textEmail.setFont(new Font("Raleway", Font.PLAIN, 14));
+        textEmail.setBounds(340, 391, 350, 30);
+        add(textEmail);
+
         labelPhone = new JLabel("Phone");
         labelPhone.setFont(new Font("Raleway", Font.BOLD, 20));
         labelPhone.setBounds(185, 440, 200, 30);
         add(labelPhone);
+
+        textPhone = new JTextField();
+        textPhone.setFont(new Font("Raleway", Font.PLAIN, 14));
+        textPhone.setBounds(340, 440, 350, 30);
+        add(textPhone);
 
         labelAddress = new JLabel("Address: ");
         labelAddress.setFont(new Font("Raleway", Font.BOLD, 20));
         labelAddress.setBounds(185, 490, 200, 30);
         add(labelAddress);
 
+        textAddress = new JTextField();
+        textAddress.setFont(new Font("Raleway", Font.PLAIN, 14));
+        textAddress.setBounds(340, 490, 350, 30);
+        add(textAddress);
+
         labelPIN = new JLabel("PIN: ");
         labelPIN.setFont(new Font("Raleway", Font.BOLD, 20));
         labelPIN.setBounds(185, 540, 200, 30);
         add(labelPIN);
+
+        textPIN = new JTextField();
+        textPIN.setFont(new Font("Raleway", Font.PLAIN, 14));
+        textPIN.setBounds(340, 540, 350, 30);
+        add(textPIN);
+
+
 
 
 
