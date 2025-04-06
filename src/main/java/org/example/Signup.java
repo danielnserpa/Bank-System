@@ -143,15 +143,6 @@ public class Signup extends JFrame implements ActionListener {
         buttonNext.addActionListener(this);
         add(buttonNext);
 
-
-
-
-
-
-
-
-
-
         getContentPane().setBackground(new Color(222, 255, 228));
         setLayout(null);
         setSize(850, 800);
@@ -162,7 +153,14 @@ public class Signup extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        try {
+            if (e.getSource() == buttonNext) {
+                // insert logic
+            }
 
+        } catch (Exception E) {
+            E.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
