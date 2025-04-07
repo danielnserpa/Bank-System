@@ -184,7 +184,7 @@ public class Signup extends JFrame implements ActionListener {
                 textAddress.getText().isEmpty() ||
                 textPIN.getText().isEmpty()) {
 
-                JOptionPane.showMessageDialog(null, "Please insert your first name");
+                JOptionPane.showMessageDialog(null, "Please fill all fields");
 
             } else {
 
@@ -193,17 +193,21 @@ public class Signup extends JFrame implements ActionListener {
                 String q = "Insert into signup values(" +
                         "'"+formNo+"'," +
                         " '"+firstName+"'," +
+                        " '"+lastName+"'," +
                         " '"+dob+"'," +
                         " '"+gender+"'," +
                         " '"+email+"'," +
                         " '"+phone+"'," +
                         " '"+address+"'," +
                         " '"+pin+"')";
-//                connect1.statement.executeUpdate(q);
+
+                connect1.statement.executeUpdate(q);
+                new Signup2();
+                setVisible(false);
             }
 
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
+        } catch (Exception E) {
+            E.printStackTrace();
         }
 
         // Exception handler

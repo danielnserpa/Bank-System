@@ -1,8 +1,6 @@
 package org.example;
 
-import java.sql.DriverManager;
-import java.sql.Statement;
-import java.sql.Connection;
+import java.sql.*;
 
 public class Connect {
 
@@ -11,7 +9,7 @@ public class Connect {
     public Connect(){
         try {
            connection = DriverManager.getConnection
-                   ("jdbc:mysql://localhost:3306", "root", "root123");
+                   ("jdbc:mysql://localhost:3306/atmsystem", "root", "root123");
            statement = connection.createStatement();
 
         } catch (Exception e){
