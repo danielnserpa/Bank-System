@@ -161,17 +161,50 @@ public class Signup extends JFrame implements ActionListener {
         String lastName = textLastName.getText();
         String dob = ((JTextField) chooseDate.getDateEditor().getUiComponent()).getText();
         String gender = null;
-                if (radioMale.isSelected()){
-                    gender = "Male";
-                } else if (radioFemale.isSelected()) {
-                    gender = "Female";
-                } else if (radioOther.isSelected()){
-                    gender = "Other";
-                }
+        if (radioMale.isSelected()){
+            gender = "Male";
+        } else if (radioFemale.isSelected()) {
+            gender = "Female";
+        } else if (radioOther.isSelected()){
+            gender = "Other";
+        }
         String email = textEmail.getText();
         String phone = textPhone.getText();
         String address = textAddress.getText();
         String pin = textPIN.getText();
+
+        try {
+
+            if (textFirstName.getText().isEmpty() ||
+                textLastName.getText().isEmpty() ||
+                dob.isEmpty() ||
+                gender == null ||
+                textEmail.getText().isEmpty() ||
+                textPhone.getText().isEmpty() ||
+                textAddress.getText().isEmpty() ||
+                textPIN.getText().isEmpty()) {
+
+                JOptionPane.showMessageDialog(null, "Please insert your first name");
+
+            } else {
+
+                Connect connect1 = new Connect();
+
+                String q = "Insert into signup values(" +
+                        "'"+formNo+"'," +
+                        " '"+firstName+"'," +
+                        " '"+dob+"'," +
+                        " '"+gender+"'," +
+                        " '"+email+"'," +
+                        " '"+phone+"'," +
+                        " '"+address+"'," +
+                        " '"+pin+"')";
+//                connect1.statement.executeUpdate(q);
+            }
+
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
 
         // Exception handler
 
