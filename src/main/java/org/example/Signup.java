@@ -14,6 +14,7 @@ public class Signup extends JFrame implements ActionListener {
     JDateChooser chooseDate;
     JRadioButton radioMale, radioFemale, radioOther;
     JButton buttonNext;
+    long randomDigits;
 
     Signup() {
         super ("APPLICATION FORM");
@@ -26,7 +27,7 @@ public class Signup extends JFrame implements ActionListener {
         add(cardimage);
 
         Random random = new Random();
-        long randomDigits = Math.abs(random.nextLong() % 9000L + 1000L);
+        randomDigits = Math.abs(random.nextLong() % 9000L + 1000L);
 
         signUpTitle = new JLabel("APPLICATION FORM NO. " + randomDigits);
         signUpTitle.setBounds(185, 20, 600, 40);
@@ -154,14 +155,27 @@ public class Signup extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        try {
-            if (e.getSource() == buttonNext) {
-                // insert logic
-            }
 
-        } catch (Exception E) {
-            E.printStackTrace();
-        }
+        long formNo = randomDigits;
+        String firstName = textFirstName.getText();
+        String lastName = textLastName.getText();
+        String dob = ((JTextField) chooseDate.getDateEditor().getUiComponent()).getText();
+        String gender = null;
+                if (radioMale.isSelected()){
+                    gender = "Male";
+                } else if (radioFemale.isSelected()) {
+                    gender = "Female";
+                } else if (radioOther.isSelected()){
+                    gender = "Other";
+                }
+        String email = textEmail.getText();
+        String phone = textPhone.getText();
+        String address = textAddress.getText();
+        String pin = textPIN.getText();
+
+        // Exception handler
+
+
     }
 
     public static void main(String[] args) {
