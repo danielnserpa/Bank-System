@@ -89,14 +89,31 @@ public class Login extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        String cardNumber = textInsertCardNumber.getText();
+        String pinNumber = passwordInsertPin.getText();
+
+
+
         try {
             if (e.getSource() == buttonSignIn) {
-                // insert logic
+
+                if (cardNumber.isEmpty() && pinNumber.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Please enter your card and PIN numbers");
+                } else if (cardNumber.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Please enter your card number");
+                } else if (pinNumber.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Please enter your PIN number");
+                }
+
             } else if (e.getSource() == buttonClear) {
+
                 textInsertCardNumber.setText("");
                 passwordInsertPin.setText("");
+
             } else if (e.getSource() == buttonSignUp) {
-                // insert logic
+
+                new Signup();
+
             }
 
         } catch (Exception E) {
