@@ -188,7 +188,7 @@ public class Signup extends JFrame implements ActionListener {
 
             } else {
 
-                Connect connect1 = new Connect();
+                Connect connect = new Connect();
 
                 String addUser = "Insert into signup values(" +
                         "'"+formNo+"'," +
@@ -201,7 +201,7 @@ public class Signup extends JFrame implements ActionListener {
                         " '"+address+"'," +
                         " '"+pin+"')";
 
-                connect1.statement.executeUpdate(addUser);
+                connect.statement.executeUpdate(addUser);
                 new Signup2();
                 setVisible(false);
             }
