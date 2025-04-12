@@ -11,10 +11,11 @@ public class Signup extends JFrame implements ActionListener {
 
     JLabel signUpTitle, personalDetails, labelFirstName, labelLastName, labelDOB, labelGender, labelEmail, labelPhone, labelAddress, labelPIN,
             labelCardNo;
-    JTextField textFirstName, textLastName, textEmail, textPhone, textAddress, textPIN, textCardNo;
+    JTextField textFirstName, textLastName, textEmail, textPhone, textAddress, textCardNo;
+    JPasswordField textPIN;
     JDateChooser chooseDate;
     JRadioButton radioMale, radioFemale, radioOther;
-    JButton buttonNext;
+    JButton buttonSubmit;
     long randomDigits, randomCardNo;
 
 
@@ -134,7 +135,7 @@ public class Signup extends JFrame implements ActionListener {
         labelPIN.setBounds(185, 540, 200, 30);
         add(labelPIN);
 
-        textPIN = new JTextField();
+        textPIN = new JPasswordField();
         textPIN.setFont(new Font("Raleway", Font.PLAIN, 14));
         textPIN.setBounds(340, 540, 350, 30);
         add(textPIN);
@@ -146,20 +147,21 @@ public class Signup extends JFrame implements ActionListener {
 
         randomCardNo = 1000000000000000L + (Math.abs(random.nextLong()) % 9000000000000000L);
         String cardNoStr = String.valueOf(randomCardNo);
-        String formattedCardNo = cardNoStr.replaceAll("(.{4})(?!$)", "$1 ");
+        String lastFourDigits = cardNoStr.substring(cardNoStr.length() - 4);
+        String maskedCardNo = "XXXX XXXX XXXX " + lastFourDigits;
 
-        textCardNo = new JTextField(formattedCardNo);
+        textCardNo = new JTextField(maskedCardNo);
         textCardNo.setFont(new Font("Raleway", Font.BOLD, 14));
         textCardNo.setBounds(340, 589, 350, 30);
         textCardNo.setEditable(false);
         add(textCardNo);
 
-        buttonNext = new JButton("Next");
-        buttonNext.setForeground(Color.BLACK);
-        buttonNext.setBounds(590, 655, 100, 30);
-        buttonNext.setFont(new Font("Arial", Font.BOLD, 14));
-        buttonNext.addActionListener(this);
-        add(buttonNext);
+        buttonSubmit = new JButton("Submit");
+        buttonSubmit.setForeground(Color.BLACK);
+        buttonSubmit.setBounds(590, 655, 100, 30);
+        buttonSubmit.setFont(new Font("Arial", Font.BOLD, 14));
+        buttonSubmit.addActionListener(this);
+        add(buttonSubmit);
 
 
         getContentPane().setBackground(new Color(222, 255, 228));
