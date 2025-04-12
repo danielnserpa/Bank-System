@@ -223,6 +223,13 @@ public class Signup extends JFrame implements ActionListener {
 
 
                 connect.statement.executeUpdate(addUser);
+
+                JOptionPane.showMessageDialog(null, "Your details have been submitted successfully. " +
+                        "Use your Card Number and PIN to log in." +
+                        "\n" +
+                        "\nYour Card Number: " + cardNo +
+                        "\nYour PIN: " + pin);
+
                 new Login();
                 setVisible(false);
             }

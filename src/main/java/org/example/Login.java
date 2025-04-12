@@ -31,13 +31,13 @@ public class Login extends JFrame implements ActionListener {
 
         labelCardNumber = new JLabel("Card No: ");
         labelCardNumber.setForeground(Color.WHITE);
-        labelCardNumber.setFont(new Font("Ralway", Font.BOLD, 18));
+        labelCardNumber.setFont(new Font("Raleway", Font.BOLD, 18));
         labelCardNumber.setBounds(185, 190, 375, 30);
         add(labelCardNumber);
 
         labelPin = new JLabel("PIN: ");
         labelPin.setForeground(Color.WHITE);
-        labelPin.setFont(new Font("Ralway", Font.BOLD, 18));
+        labelPin.setFont(new Font("Raleway", Font.BOLD, 18));
         labelPin.setBounds(185, 250, 375, 30);
         add(labelPin);
 
@@ -92,8 +92,6 @@ public class Login extends JFrame implements ActionListener {
         String cardNumber = textInsertCardNumber.getText();
         String pinNumber = passwordInsertPin.getText();
 
-
-
         try {
             if (e.getSource() == buttonSignIn) {
 
@@ -103,17 +101,30 @@ public class Login extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Please enter your card number");
                 } else if (pinNumber.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Please enter your PIN number");
+                } else {
+                    try {
+
+                        Connect connect = new Connect();
+                        String searchForUser = "SELECT * FROM signup WHERE card_no = '" + cardNumber + "' AND pin = '" + pinNumber + "'";
+                        var logInAttempt = connect.statement.executeQuery(searchForUser);
+
+                        if (logInAttempt.next()) {
+                            JOptionPane.showMessageDialog(null, "Login Successful");
+                            setVisible(false);
+                        } else {
+                            JOptionPane.showMessageDialog(null,"Invalid Card Number or PIN");
+                        }
+                    } catch (Exception ex){
+                        ex.printStackTrace();
+                    }
                 }
 
             } else if (e.getSource() == buttonClear) {
-
                 textInsertCardNumber.setText("");
                 passwordInsertPin.setText("");
 
             } else if (e.getSource() == buttonSignUp) {
-
                 new Signup();
-
             }
 
         } catch (Exception E) {
