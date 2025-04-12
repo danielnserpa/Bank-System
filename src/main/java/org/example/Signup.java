@@ -188,8 +188,8 @@ public class Signup extends JFrame implements ActionListener {
         String email = textEmail.getText();
         String phone = textPhone.getText();
         String address = textAddress.getText();
-        String pin = textPIN.getText();
         String cardNo = String.valueOf(randomCardNo);
+        String pin = textPIN.getText();
 
         try {
 
@@ -207,7 +207,6 @@ public class Signup extends JFrame implements ActionListener {
             } else {
 
                 Connect connect = new Connect();
-
                 String addUser = "Insert into signup values(" +
                         "'"+formNo+"'," +
                         " '"+firstName+"'," +
@@ -217,8 +216,9 @@ public class Signup extends JFrame implements ActionListener {
                         " '"+email+"'," +
                         " '"+phone+"'," +
                         " '"+address+"'," +
-                        " '"+pin+"'," +
-                        " '"+cardNo+"')";
+                        " '"+cardNo+"'," +
+                        " '"+pin+"')";
+
 
                 connect.statement.executeUpdate(addUser);
                 new Login();
