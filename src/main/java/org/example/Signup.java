@@ -9,12 +9,14 @@ import com.toedter.calendar.JDateChooser;
 
 public class Signup extends JFrame implements ActionListener {
 
-    JLabel signUpTitle, personalDetails, labelFirstName, labelLastName, labelDOB, labelGender, labelEmail, labelPhone, labelAddress, labelPIN;
-    JTextField textFirstName, textLastName, textEmail, textPhone, textAddress, textPIN;
+    JLabel signUpTitle, personalDetails, labelFirstName, labelLastName, labelDOB, labelGender, labelEmail, labelPhone, labelAddress, labelPIN,
+            labelCardNo;
+    JTextField textFirstName, textLastName, textEmail, textPhone, textAddress, textPIN, textCardNo;
     JDateChooser chooseDate;
     JRadioButton radioMale, radioFemale, radioOther;
     JButton buttonNext;
-    long randomDigits;
+    long randomDigits, randomCardNo;
+
 
     Signup() {
         super ("APPLICATION FORM");
@@ -107,7 +109,7 @@ public class Signup extends JFrame implements ActionListener {
         textEmail.setBounds(340, 391, 350, 30);
         add(textEmail);
 
-        labelPhone = new JLabel("Phone");
+        labelPhone = new JLabel("Phone: ");
         labelPhone.setFont(new Font("Raleway", Font.BOLD, 20));
         labelPhone.setBounds(185, 440, 200, 30);
         add(labelPhone);
@@ -137,9 +139,24 @@ public class Signup extends JFrame implements ActionListener {
         textPIN.setBounds(340, 540, 350, 30);
         add(textPIN);
 
+        labelCardNo = new JLabel("Card No: ");
+        labelCardNo.setFont(new Font("Raleway", Font.BOLD, 20));
+        labelCardNo.setBounds(185, 590, 200, 30);
+        add(labelCardNo);
+
+        randomCardNo = 1000000000000000L + (Math.abs(random.nextLong()) % 9000000000000000L);
+        String cardNoStr = String.valueOf(randomCardNo);
+        String formattedCardNo = cardNoStr.replaceAll("(.{4})(?!$)", "$1 ");
+
+        textCardNo = new JTextField(formattedCardNo);
+        textCardNo.setFont(new Font("Raleway", Font.BOLD, 14));
+        textCardNo.setBounds(340, 589, 350, 30);
+        textCardNo.setEditable(false);
+        add(textCardNo);
+
         buttonNext = new JButton("Next");
         buttonNext.setForeground(Color.BLACK);
-        buttonNext.setBounds(590, 605, 100, 30);
+        buttonNext.setBounds(590, 655, 100, 30);
         buttonNext.setFont(new Font("Arial", Font.BOLD, 14));
         buttonNext.addActionListener(this);
         add(buttonNext);
@@ -172,6 +189,7 @@ public class Signup extends JFrame implements ActionListener {
         String phone = textPhone.getText();
         String address = textAddress.getText();
         String pin = textPIN.getText();
+        String cardNo = String.valueOf(randomCardNo);
 
         try {
 
@@ -199,10 +217,11 @@ public class Signup extends JFrame implements ActionListener {
                         " '"+email+"'," +
                         " '"+phone+"'," +
                         " '"+address+"'," +
-                        " '"+pin+"')";
+                        " '"+pin+"'," +
+                        " '"+cardNo+"')";
 
                 connect.statement.executeUpdate(addUser);
-                new Signup2();
+                new Login();
                 setVisible(false);
             }
 
