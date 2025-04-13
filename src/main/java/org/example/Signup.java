@@ -218,7 +218,7 @@ public class Signup extends JFrame implements ActionListener {
                 } else {
 
                     Connect connect = new Connect();
-                    String addUser = "Insert into signup values(" +
+                    String addUserToSignUpTable = "INSERT INTO signup VALUES (" +
                             "'" + formNo + "'," +
                             " '" + firstName + "'," +
                             " '" + lastName + "'," +
@@ -230,8 +230,13 @@ public class Signup extends JFrame implements ActionListener {
                             " '" + cardNo + "'," +
                             " '" + pin + "')";
 
+                    String addUserToLogInTable = "INSERT INTO login VALUES(" +
+                            "'" + formNo + "'," +
+                            " '" + cardNo + "'," +
+                            " '" + pin + "')";
 
-                    connect.statement.executeUpdate(addUser);
+                    connect.statement.executeUpdate(addUserToSignUpTable);
+                    connect.statement.executeUpdate(addUserToLogInTable);
 
                     JOptionPane.showMessageDialog(null, "Your details have been submitted successfully. " +
                             "Use your Card Number and PIN to log in." +

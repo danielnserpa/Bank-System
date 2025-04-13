@@ -110,7 +110,7 @@ public class Login extends JFrame implements ActionListener {
 
                         if (logInAttempt.next()) {
                             JOptionPane.showMessageDialog(null, "Login Successful");
-                            new Functions();
+                            new Main();
                             setVisible(false);
                         } else {
                             JOptionPane.showMessageDialog(null,"Invalid Card Number or PIN");

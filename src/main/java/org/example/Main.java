@@ -2,9 +2,9 @@ package org.example;
 
 import javax.swing.*;
 
-public class Functions extends JFrame {
+public class Main extends JFrame {
 
-    Functions(){
+    Main(){
 
 
 
@@ -19,6 +19,6 @@ public class Functions extends JFrame {
     }
 
     public static void main(String[] args) {
-        new Functions();
+        new Main();
     }
 }
