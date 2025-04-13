@@ -15,7 +15,7 @@ public class Signup extends JFrame implements ActionListener {
     JPasswordField textPIN;
     JDateChooser chooseDate;
     JRadioButton radioMale, radioFemale, radioOther;
-    JButton buttonSubmit;
+    JButton buttonSubmit, buttonLogIn;
     long randomDigits, randomCardNo;
 
 
@@ -163,6 +163,12 @@ public class Signup extends JFrame implements ActionListener {
         buttonSubmit.addActionListener(this);
         add(buttonSubmit);
 
+        buttonLogIn = new JButton("Log In");
+        buttonLogIn.setForeground(Color.BLACK);
+        buttonLogIn.setBounds(470, 655, 100, 30);
+        buttonLogIn.setFont(new Font("Arial", Font.BOLD, 14));
+        buttonLogIn.addActionListener(this);
+        add(buttonLogIn);
 
         getContentPane().setBackground(new Color(222, 255, 228));
         setLayout(null);
@@ -194,52 +200,55 @@ public class Signup extends JFrame implements ActionListener {
         String pin = textPIN.getText();
 
         try {
-
-            if (textFirstName.getText().isEmpty() ||
-                textLastName.getText().isEmpty() ||
-                dob.isEmpty() ||
-                gender == null ||
-                textEmail.getText().isEmpty() ||
-                textPhone.getText().isEmpty() ||
-                textAddress.getText().isEmpty() ||
-                textPIN.getText().isEmpty()) {
-
-                JOptionPane.showMessageDialog(null, "Please fill all fields");
-
-            } else {
-
-                Connect connect = new Connect();
-                String addUser = "Insert into signup values(" +
-                        "'"+formNo+"'," +
-                        " '"+firstName+"'," +
-                        " '"+lastName+"'," +
-                        " '"+dob+"'," +
-                        " '"+gender+"'," +
-                        " '"+email+"'," +
-                        " '"+phone+"'," +
-                        " '"+address+"'," +
-                        " '"+cardNo+"'," +
-                        " '"+pin+"')";
-
-
-                connect.statement.executeUpdate(addUser);
-
-                JOptionPane.showMessageDialog(null, "Your details have been submitted successfully. " +
-                        "Use your Card Number and PIN to log in." +
-                        "\n" +
-                        "\nYour Card Number: " + cardNo +
-                        "\nYour PIN: " + pin);
-
+            if (e.getSource() == buttonLogIn) {
                 new Login();
                 setVisible(false);
+            } else {
+                if (textFirstName.getText().isEmpty() ||
+                        textLastName.getText().isEmpty() ||
+                        dob.isEmpty() ||
+                        gender == null ||
+                        textEmail.getText().isEmpty() ||
+                        textPhone.getText().isEmpty() ||
+                        textAddress.getText().isEmpty() ||
+                        textPIN.getText().isEmpty()) {
+
+                    JOptionPane.showMessageDialog(null, "Please fill all fields");
+
+                } else {
+
+                    Connect connect = new Connect();
+                    String addUser = "Insert into signup values(" +
+                            "'" + formNo + "'," +
+                            " '" + firstName + "'," +
+                            " '" + lastName + "'," +
+                            " '" + dob + "'," +
+                            " '" + gender + "'," +
+                            " '" + email + "'," +
+                            " '" + phone + "'," +
+                            " '" + address + "'," +
+                            " '" + cardNo + "'," +
+                            " '" + pin + "')";
+
+
+                    connect.statement.executeUpdate(addUser);
+
+                    JOptionPane.showMessageDialog(null, "Your details have been submitted successfully. " +
+                            "Use your Card Number and PIN to log in." +
+                            "\n" +
+                            "\nYour Card Number: " + cardNo +
+                            "\nYour PIN: " + pin);
+
+                    new Login();
+                    setVisible(false);
+                }
             }
 
-        } catch (Exception E) {
-            E.printStackTrace();
-        }
+            } catch(Exception E){
+                E.printStackTrace();
+            }
 
-        // Exception handler
-
+            // Exception handler
 
     }
 
