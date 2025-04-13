@@ -10,9 +10,11 @@ public class Functions extends JFrame {
 
 
         setLayout(null);
-        setSize(1550, 1080);
-        setLocation(0, 0);
+        setSize(1260, 850);
+        setLocation(200, 50);
         setVisible(true);
+
+
 
     }
 
