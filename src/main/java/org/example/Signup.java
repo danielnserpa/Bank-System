@@ -15,7 +15,7 @@ public class Signup extends JFrame implements ActionListener {
     JPasswordField textPIN;
     JDateChooser chooseDate;
     JRadioButton radioMale, radioFemale, radioOther;
-    JButton buttonSubmit, buttonLogIn;
+    JButton buttonSubmit, buttonCancel;
     long randomDigits, randomCardNo;
 
 
@@ -163,12 +163,12 @@ public class Signup extends JFrame implements ActionListener {
         buttonSubmit.addActionListener(this);
         add(buttonSubmit);
 
-        buttonLogIn = new JButton("Log In");
-        buttonLogIn.setForeground(Color.BLACK);
-        buttonLogIn.setBounds(470, 655, 100, 30);
-        buttonLogIn.setFont(new Font("Arial", Font.BOLD, 14));
-        buttonLogIn.addActionListener(this);
-        add(buttonLogIn);
+        buttonCancel = new JButton("Cancel");
+        buttonCancel.setForeground(Color.BLACK);
+        buttonCancel.setBounds(470, 655, 100, 30);
+        buttonCancel.setFont(new Font("Arial", Font.BOLD, 14));
+        buttonCancel.addActionListener(this);
+        add(buttonCancel);
 
         getContentPane().setBackground(new Color(222, 255, 228));
         setLayout(null);
@@ -200,7 +200,7 @@ public class Signup extends JFrame implements ActionListener {
         String pin = textPIN.getText();
 
         try {
-            if (e.getSource() == buttonLogIn) {
+            if (e.getSource() == buttonCancel) {
                 new Login();
                 setVisible(false);
             } else {
