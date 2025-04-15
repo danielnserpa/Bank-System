@@ -8,13 +8,13 @@ import java.util.Date;
 
 public class Deposit extends JFrame implements ActionListener {
 
-    String pin;
+    String cardNo;
     JLabel labelDepositAmount;
     JTextField textDepositAmount;
     JButton buttonSubmitDeposit, buttonCancelDeposit;
 
-    Deposit(String pin) {
-        this.pin = pin;
+    Deposit(String cardNo) {
+        this.cardNo = cardNo;
 
         ImageIcon atm = new ImageIcon(ClassLoader.getSystemResource("icon/atm.png"));
         Image atm2 = atm.getImage().getScaledInstance(1260, 850, Image.SCALE_DEFAULT);
@@ -67,7 +67,7 @@ public class Deposit extends JFrame implements ActionListener {
                 } else {
                     Connect connect = new Connect();
                     String addInfoToBankTable = "INSERT INTO bank VALUES (" +
-                            "'"+pin+"'," +
+                            "'"+cardNo+"'," +
                             "'"+date+"'," +
                             "'Deposit'," +
                             "'"+amount+"')";
@@ -76,12 +76,12 @@ public class Deposit extends JFrame implements ActionListener {
 
                     JOptionPane.showMessageDialog(null, "€" + amount + " deposited sucessfully");
                     setVisible(false);
-                    new Main(pin);
+                    new Main(cardNo);
 
                 }
             } else if (e.getSource() == buttonCancelDeposit) {
                 setVisible(false);
-                new Main(pin);
+                new Main(cardNo);
             }
 
         } catch (Exception E) {

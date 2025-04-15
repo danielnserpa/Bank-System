@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
 public class Login extends JFrame implements ActionListener {
 
@@ -106,11 +107,11 @@ public class Login extends JFrame implements ActionListener {
 
                         Connect connect = new Connect();
                         String searchForUser = "SELECT * FROM signup WHERE card_no = '" + cardNumber + "' AND pin = '" + pinNumber + "'";
-                        var logInAttempt = connect.statement.executeQuery(searchForUser);
+                        ResultSet logInAttempt = connect.statement.executeQuery(searchForUser);
 
                         if (logInAttempt.next()) {
                             JOptionPane.showMessageDialog(null, "Login Successful");
-                            new Deposit(pinNumber);
+                            new Main(cardNumber);
                             setVisible(false);
                         } else {
                             JOptionPane.showMessageDialog(null,"Invalid Card Number or PIN");

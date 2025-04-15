@@ -7,12 +7,12 @@ import java.awt.event.ActionListener;
 
 public class Main extends JFrame implements ActionListener {
 
-    String pin;
+    String cardNo;
     JLabel labelWelcomeUser;
     JButton buttonDeposit, buttonWithdraw, buttonCheckBalance, buttonChangePin, buttonGetStatement, buttonExit;
 
-    Main(String pin){
-        this.pin = pin;
+    Main(String cardNo){
+        this.cardNo = cardNo;
 
         ImageIcon atm = new ImageIcon(ClassLoader.getSystemResource("icon/atm.png"));
         Image atm2 = atm.getImage().getScaledInstance(1260, 850, Image.SCALE_DEFAULT);
@@ -82,7 +82,8 @@ public class Main extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == buttonDeposit) {
-            new Deposit(pin);
+            new Deposit(cardNo);
+            setVisible(false);
 
         } else if (e.getSource() == buttonWithdraw) {
 
