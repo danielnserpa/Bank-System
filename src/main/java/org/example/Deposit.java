@@ -73,7 +73,6 @@ public class Deposit extends JFrame implements ActionListener {
                             "'"+amount+"')";
 
                     connect.statement.executeUpdate(addInfoToBankTable);
-
                     JOptionPane.showMessageDialog(null, "Your deposit was successful");
 
                 }
