@@ -29,7 +29,7 @@ public class Deposit extends JFrame implements ActionListener {
         labelDepositAmount.setBounds(425, 335, 430, 35);
         atmImage.add(labelDepositAmount);
 
-        textDepositAmount = new JTextField("€");
+        textDepositAmount = new JTextField();
         textDepositAmount.setBounds(425, 385, 405, 25);
         textDepositAmount.setFont(new Font("Raleway", Font.PLAIN, 20));
         textDepositAmount.setHorizontalAlignment(JTextField.CENTER);
@@ -64,22 +64,27 @@ public class Deposit extends JFrame implements ActionListener {
 
             if (e.getSource() == buttonSubmitDeposit) {
                 if (textDepositAmount.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Please enter the amount you wish to deposit");
+                    JOptionPane.showMessageDialog(null, "Please enter the amount you wish to deposit  ");
                 } else {
                     Connect connect = new Connect();
                     String addInfoToBankTable = "INSERT INTO bank VALUES (" +
                             "'"+pin+"'," +
                             "'"+date+"'," +
+                            "'Deposit'," +
                             "'"+amount+"')";
 
                     connect.statement.executeUpdate(addInfoToBankTable);
-                    JOptionPane.showMessageDialog(null, "Your deposit was successful");
+
+                    JOptionPane.showMessageDialog(null, "€" + amount + " deposited sucessfully");
+                    setVisible(false);
 
                 }
+            } else if (e.getSource() == buttonCancelDeposit) {
+                setVisible(false);
             }
 
         } catch (Exception E) {
-            E.printStackTrace();;
+            E.printStackTrace();
         }
 
 
