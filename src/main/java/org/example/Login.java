@@ -125,7 +125,9 @@ public class Login extends JFrame implements ActionListener {
                 passwordInsertPin.setText("");
 
             } else if (e.getSource() == buttonSignUp) {
-                new Signup();
+                Signup signup = new Signup(this);
+                signup.setVisible(true);
+                this.setVisible(false);
             }
 
         } catch (Exception E) {

@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+
+import com.mysql.cj.log.Log;
 import com.toedter.calendar.JDateChooser;
 
 public class Signup extends JFrame implements ActionListener {
@@ -17,10 +19,11 @@ public class Signup extends JFrame implements ActionListener {
     JRadioButton radioMale, radioFemale, radioOther;
     JButton buttonSubmit, buttonCancel;
     long randomDigits, randomCardNo;
+    Login logInScreen;
 
-
-    Signup() {
+    Signup(Login logInScreen) {
         super ("APPLICATION FORM");
+        this.logInScreen = logInScreen;
 
         ImageIcon card1 = new ImageIcon(ClassLoader.getSystemResource("icon/card.png"));
         Image card2 = card1.getImage().getScaledInstance(125, 125, Image.SCALE_DEFAULT);
@@ -201,8 +204,13 @@ public class Signup extends JFrame implements ActionListener {
 
         try {
             if (e.getSource() == buttonCancel) {
-                new Login();
-                setVisible(false);
+                if (logInScreen == null){
+                    new Login();
+                    setVisible(false);
+                } else {
+                    logInScreen.setVisible(true);
+                    setVisible(false);
+                }
             } else {
                 if (textFirstName.getText().isEmpty() ||
                         textLastName.getText().isEmpty() ||
@@ -259,7 +267,7 @@ public class Signup extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
 
-        new Signup();
+        new Signup(null);
 
     }
 }
