@@ -2,12 +2,16 @@ package org.example;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
 
-public class Deposit extends JFrame {
+public class Deposit extends JFrame implements ActionListener {
 
     String pin;
     JLabel labelDepositAmount;
     JTextField textDepositAmount;
+    JButton buttonSubmitDeposit, buttonCancelDeposit;
 
     Deposit(String pin) {
         this.pin = pin;
@@ -25,17 +29,60 @@ public class Deposit extends JFrame {
         labelDepositAmount.setBounds(425, 335, 430, 35);
         atmImage.add(labelDepositAmount);
 
-        textDepositAmount = new JTextField();
+        textDepositAmount = new JTextField("€");
         textDepositAmount.setBounds(425, 385, 405, 25);
         textDepositAmount.setFont(new Font("Raleway", Font.PLAIN, 20));
         textDepositAmount.setHorizontalAlignment(JTextField.CENTER);
         atmImage.add(textDepositAmount);
+
+        buttonSubmitDeposit = new JButton("DEPOSIT");
+        buttonSubmitDeposit.setBounds(645, 470, 100, 35);
+        buttonSubmitDeposit.setForeground(Color.BLACK);
+        buttonSubmitDeposit.addActionListener(this);
+        atmImage.add(buttonSubmitDeposit);
+
+        buttonCancelDeposit = new JButton("CANCEL");
+        buttonCancelDeposit.setBounds(500, 470, 100, 35);
+        buttonCancelDeposit.setForeground(Color.BLACK);
+        buttonCancelDeposit.addActionListener(this);
+        atmImage.add(buttonCancelDeposit);
 
 
         setLayout(null);
         setSize(1260, 850);
         setLocation(200, 50);
         setVisible(true);
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        try {
+            String amount = textDepositAmount.getText();
+            Date date = new Date();
+
+            if (e.getSource() == buttonSubmitDeposit) {
+                if (textDepositAmount.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Please enter the amount you wish to deposit");
+                } else {
+                    Connect connect = new Connect();
+                    String addInfoToBankTable = "INSERT INTO bank VALUES (" +
+                            "'"+pin+"'," +
+                            "'"+date+"'," +
+                            "'"+amount+"')";
+
+                    connect.statement.executeUpdate(addInfoToBankTable);
+
+                    JOptionPane.showMessageDialog(null, "Your deposit was successful");
+
+                }
+            }
+
+        } catch (Exception E) {
+            E.printStackTrace();;
+        }
+
 
     }
 
