@@ -204,11 +204,7 @@ public class Signup extends JFrame implements ActionListener {
 
         try {
             if (e.getSource() == buttonCancel) {
-                if (logInScreen == null){
-                    new Login();
-                } else {
-                    logInScreen.setVisible(true);
-                }
+                logInScreen.setVisible(true);
                 setVisible(false);
             } else {
                 if (textFirstName.getText().isEmpty() ||
@@ -266,7 +262,7 @@ public class Signup extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
 
-        new Signup(null);
+        new Signup(new Login());
 
     }
 }
