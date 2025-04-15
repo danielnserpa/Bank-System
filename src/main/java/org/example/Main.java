@@ -7,10 +7,12 @@ import java.awt.event.ActionListener;
 
 public class Main extends JFrame implements ActionListener {
 
+    String pin;
     JLabel labelWelcomeUser;
-    JButton buttonDeposit, buttonWithdraw, buttonCheckBalance, buttonChangePin, buttonPrintStatement, buttonExit;
+    JButton buttonDeposit, buttonWithdraw, buttonCheckBalance, buttonChangePin, buttonGetStatement, buttonExit;
 
-    Main(){
+    Main(String pin){
+        this.pin = pin;
 
         ImageIcon atm = new ImageIcon(ClassLoader.getSystemResource("icon/atm.png"));
         Image atm2 = atm.getImage().getScaledInstance(1260, 850, Image.SCALE_DEFAULT);
@@ -29,36 +31,42 @@ public class Main extends JFrame implements ActionListener {
         buttonDeposit.setBounds(400, 408, 115, 27);
         buttonDeposit.setForeground((Color.BLACK));
         buttonDeposit.setFont(new Font("System", Font.BOLD, 16));
+        buttonDeposit.addActionListener(this);
         atmImage.add(buttonDeposit);
 
         buttonWithdraw = new JButton("Withdraw");
         buttonWithdraw.setBounds(400, 445, 115, 27);
         buttonWithdraw.setForeground((Color.BLACK));
         buttonWithdraw.setFont(new Font("System", Font.BOLD, 16));
+        buttonWithdraw.addActionListener(this);
         atmImage.add(buttonWithdraw);
 
         buttonCheckBalance = new JButton("Balance");
         buttonCheckBalance.setBounds(400, 482, 115, 27);
         buttonCheckBalance.setForeground((Color.BLACK));
         buttonCheckBalance.setFont(new Font("System", Font.BOLD, 16));
+        buttonCheckBalance.addActionListener(this);
         atmImage.add(buttonCheckBalance);
 
-        buttonPrintStatement = new JButton("Get Statement");
-        buttonPrintStatement.setBounds(710, 408, 150, 27);
-        buttonPrintStatement.setForeground((Color.BLACK));
-        buttonPrintStatement.setFont(new Font("System", Font.BOLD, 16));
-        atmImage.add(buttonPrintStatement);
+        buttonGetStatement = new JButton("Get Statement");
+        buttonGetStatement.setBounds(710, 408, 150, 27);
+        buttonGetStatement.setForeground((Color.BLACK));
+        buttonGetStatement.setFont(new Font("System", Font.BOLD, 16));
+        buttonGetStatement.addActionListener(this);
+        atmImage.add(buttonGetStatement);
 
         buttonChangePin = new JButton("Change PIN");
         buttonChangePin.setBounds(710, 445, 150, 27);
         buttonChangePin.setForeground((Color.BLACK));
         buttonChangePin.setFont(new Font("System", Font.BOLD, 16));
+        buttonChangePin.addActionListener(this);
         atmImage.add(buttonChangePin);
 
         buttonExit = new JButton("Exit");
         buttonExit.setBounds(710, 482, 150, 27);
         buttonExit.setForeground((Color.BLACK));
         buttonExit.setFont(new Font("System", Font.BOLD, 16));
+        buttonExit.addActionListener(this);
         atmImage.add(buttonExit);
 
         setLayout(null);
@@ -73,9 +81,24 @@ public class Main extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        if (e.getSource() == buttonDeposit) {
+            new Deposit(pin);
+
+        } else if (e.getSource() == buttonWithdraw) {
+
+        } else if (e.getSource() == buttonCheckBalance) {
+
+        } else if (e.getSource() == buttonGetStatement) {
+
+        } else if (e.getSource() == buttonChangePin) {
+
+        } else {
+
+        }
+
     }
 
     public static void main(String[] args) {
-        new Main();
+        new Main("");
     }
 }

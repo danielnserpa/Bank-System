@@ -47,7 +47,6 @@ public class Deposit extends JFrame implements ActionListener {
         buttonCancelDeposit.addActionListener(this);
         atmImage.add(buttonCancelDeposit);
 
-
         setLayout(null);
         setSize(1260, 850);
         setLocation(200, 50);
@@ -77,10 +76,12 @@ public class Deposit extends JFrame implements ActionListener {
 
                     JOptionPane.showMessageDialog(null, "€" + amount + " deposited sucessfully");
                     setVisible(false);
+                    new Main(pin);
 
                 }
             } else if (e.getSource() == buttonCancelDeposit) {
                 setVisible(false);
+                new Main(pin);
             }
 
         } catch (Exception E) {
