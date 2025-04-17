@@ -68,20 +68,20 @@ public class Withdraw extends JFrame implements ActionListener {
 
 
             if (e.getSource() == buttonSubmitWithdraw) {
-                if (buttonSubmitWithdraw.getText().isEmpty()) {
+                if (textWithdrawAmount.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Please enter the amount you wish to withdraw  ");
                 } else {
                     Connect connect = new Connect();
 
-                    ResultSet addWithdrawToBankTable = connect.statement.executeQuery("SELECT * FROM bank WHERE card_no = '"+cardNo+"'");
+                    ResultSet selectTransactions = connect.statement.executeQuery("SELECT * FROM bank WHERE card_no = '"+cardNo+"'");
 
-                    int balance = 0;
+                    double balance = 0;
 
-                    while (addWithdrawToBankTable.next()) {
-                        if (addWithdrawToBankTable.getString("type").equals("Deposit")) {
-                            balance += Double.parseDouble(addWithdrawToBankTable.getString("amount"));
+                    while (selectTransactions.next()) {
+                        if (selectTransactions.getString("type").equals("Deposit")) {
+                            balance += Double.parseDouble(selectTransactions.getString("amount"));
                         } else {
-                            balance -= Double.parseDouble(addWithdrawToBankTable.getString("amount"));
+                            balance -= Double.parseDouble(selectTransactions.getString("amount"));
                         }
                     }
 
