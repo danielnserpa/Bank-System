@@ -67,13 +67,13 @@ public class Deposit extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Please enter the amount you wish to deposit  ");
                 } else {
                     Connect connect = new Connect();
-                    String addInfoToBankTable = "INSERT INTO bank VALUES (" +
+                    String addDepositToBankTable = "INSERT INTO bank VALUES (" +
                             "'"+cardNo+"'," +
                             "'"+date+"'," +
                             "'Deposit'," +
                             "'"+amount+"')";
 
-                    connect.statement.executeUpdate(addInfoToBankTable);
+                    connect.statement.executeUpdate(addDepositToBankTable);
 
                     JOptionPane.showMessageDialog(null, "€" + amount + " deposited successfully");
                     setVisible(false);

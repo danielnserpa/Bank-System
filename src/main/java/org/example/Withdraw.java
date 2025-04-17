@@ -73,15 +73,15 @@ public class Withdraw extends JFrame implements ActionListener {
                 } else {
                     Connect connect = new Connect();
 
-                    ResultSet resultSet = connect.statement.executeQuery("SELECT * FROM bank WHERE card_no = '"+cardNo+"'");
+                    ResultSet addWithdrawToBankTable = connect.statement.executeQuery("SELECT * FROM bank WHERE card_no = '"+cardNo+"'");
 
                     int balance = 0;
 
-                    while (resultSet.next()) {
-                        if (resultSet.getString("type").equals("Deposit")) {
-                            balance += Double.parseDouble(resultSet.getString("amount"));
+                    while (addWithdrawToBankTable.next()) {
+                        if (addWithdrawToBankTable.getString("type").equals("Deposit")) {
+                            balance += Double.parseDouble(addWithdrawToBankTable.getString("amount"));
                         } else {
-                            balance -= Double.parseDouble(resultSet.getString("amount"));
+                            balance -= Double.parseDouble(addWithdrawToBankTable.getString("amount"));
                         }
                     }
 
