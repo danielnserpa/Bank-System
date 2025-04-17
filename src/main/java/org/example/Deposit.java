@@ -35,7 +35,7 @@ public class Deposit extends JFrame implements ActionListener {
         textDepositAmount.setHorizontalAlignment(JTextField.CENTER);
         atmImage.add(textDepositAmount);
 
-        buttonSubmitDeposit = new JButton("DEPOSIT");
+        buttonSubmitDeposit = new JButton("CONFIRM");
         buttonSubmitDeposit.setBounds(645, 470, 100, 35);
         buttonSubmitDeposit.setForeground(Color.BLACK);
         buttonSubmitDeposit.addActionListener(this);
@@ -75,7 +75,7 @@ public class Deposit extends JFrame implements ActionListener {
 
                     connect.statement.executeUpdate(addInfoToBankTable);
 
-                    JOptionPane.showMessageDialog(null, "€" + amount + " deposited sucessfully");
+                    JOptionPane.showMessageDialog(null, "€" + amount + " deposited successfully");
                     setVisible(false);
                     new Main(cardNo);
 
