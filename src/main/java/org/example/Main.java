@@ -1,5 +1,7 @@
 package org.example;
 
+import com.mysql.cj.log.Log;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,6 +14,7 @@ public class Main extends JFrame implements ActionListener {
     JButton buttonDeposit, buttonWithdraw, buttonCheckBalance, buttonChangePin, buttonGetStatement, buttonExit;
 
     Main(String cardNo){
+
         this.cardNo = cardNo;
 
         ImageIcon atm = new ImageIcon(ClassLoader.getSystemResource("icon/atm.png"));
@@ -94,6 +97,8 @@ public class Main extends JFrame implements ActionListener {
         } else if (e.getSource() == buttonChangePin) {
 
         } else {
+            new Login();
+            setVisible(false);
 
         }
 
