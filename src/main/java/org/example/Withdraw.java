@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.util.Date;
 
 public class Withdraw extends JFrame implements ActionListener {
@@ -63,18 +64,37 @@ public class Withdraw extends JFrame implements ActionListener {
             String amount = textWithdrawAmount.getText();
             Date date = new Date();
 
+            // ADD A CONDITION TO ALLOW WITHDRAWS UP TO MAXIMUM 1500
+
+
             if (e.getSource() == buttonSubmitWithdraw) {
                 if (buttonSubmitWithdraw.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Please enter the amount you wish to withdraw  ");
                 } else {
                     Connect connect = new Connect();
-                    String addInfoToBankTable = "INSERT INTO bank VALUES (" +
+
+                    ResultSet resultSet = connect.statement.executeQuery("SELECT * FROM bank WHERE card_no = '"+cardNo+"'");
+
+                    int balance = 0;
+
+                    while (resultSet.next()) {
+                        if (resultSet.getString("type").equals("Deposit")) {
+                            balance += Double.parseDouble(resultSet.getString("amount"));
+                        } else {
+                            balance -= Double.parseDouble(resultSet.getString("amount"));
+                        }
+                    }
+
+                    if (balance < Double.parseDouble(amount)) {
+                        JOptionPane.showMessageDialog(null, "Insufficient funds");
+                        return;
+                    }
+
+                    connect.statement.executeUpdate("INSERT INTO bank VALUES (" +
                             "'"+cardNo+"'," +
                             "'"+date+"'," +
                             "'Withdraw'," +
-                            "'"+amount+"')";
-
-                    connect.statement.executeUpdate(addInfoToBankTable);
+                            "'"+amount+"')");
 
                     JOptionPane.showMessageDialog(null, "€" + amount + " withdrew successfully");
                     setVisible(false);
