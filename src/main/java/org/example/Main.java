@@ -89,11 +89,11 @@ public class Main extends JFrame implements ActionListener {
             setVisible(false);
 
         } else if (e.getSource() == buttonWithdraw) {
-            new Withdraw(cardNo);
+            new Withdraw(cardNo, this);
             setVisible(false);
 
         } else if (e.getSource() == buttonCheckBalance) {
-            new Balance(cardNo);
+            new Balance(cardNo, this);
             setVisible(false);
 
         } else if (e.getSource() == buttonGetStatement) {

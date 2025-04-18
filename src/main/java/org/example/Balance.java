@@ -11,10 +11,12 @@ public class Balance extends JFrame implements ActionListener {
     String cardNo;
     JLabel labelCheckBalance, labelDisplayAmount;
     JButton buttonShowBalance, buttonCancelCheckBalance;
+    Main mainScreen;
 
-    Balance(String cardNo) {
+    Balance(String cardNo, Main mainScreen) {
 
         this.cardNo = cardNo;
+        this.mainScreen = mainScreen;
 
         ImageIcon atm = new ImageIcon(ClassLoader.getSystemResource("icon/atm.png"));
         Image atm2 = atm.getImage().getScaledInstance(1260, 850, Image.SCALE_DEFAULT);
@@ -82,7 +84,7 @@ public class Balance extends JFrame implements ActionListener {
                 buttonShowBalance.setText("SHOW");
 
             } else if (e.getSource() == buttonCancelCheckBalance) {
-                new Main(cardNo);
+                mainScreen.setVisible(true);
                 setVisible(false);
             }
         } catch (Exception E) {
@@ -92,6 +94,6 @@ public class Balance extends JFrame implements ActionListener {
 
 
     public static void main(String[] args) {
-        new Balance("");
+        new Balance("", null);
     }
 }

@@ -13,10 +13,12 @@ public class Withdraw extends JFrame implements ActionListener {
     JLabel labelWithdrawAmount;
     JTextField textWithdrawAmount;
     JButton buttonSubmitWithdraw, buttonCancelWithdraw;
+    Main mainScreen;
 
-    Withdraw(String cardNo) {
+    Withdraw(String cardNo, Main mainScreen) {
 
         this.cardNo = cardNo;
+        this.mainScreen = mainScreen;
 
         ImageIcon atm = new ImageIcon(ClassLoader.getSystemResource("icon/atm.png"));
         Image atm2 = atm.getImage().getScaledInstance(1260, 850, Image.SCALE_DEFAULT);
@@ -98,12 +100,12 @@ public class Withdraw extends JFrame implements ActionListener {
 
                     JOptionPane.showMessageDialog(null, "€" + amount + " withdrew successfully");
                     setVisible(false);
-                    new Main(cardNo);
+                    mainScreen.setVisible(true);
 
                 }
             } else if (e.getSource() == buttonCancelWithdraw) {
                 setVisible(false);
-                new Main(cardNo);
+                mainScreen.setVisible(true);
             }
 
         } catch (Exception E) {
@@ -114,7 +116,7 @@ public class Withdraw extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
 
-        new Withdraw("");
+        new Withdraw("", null);
 
     }
 }
