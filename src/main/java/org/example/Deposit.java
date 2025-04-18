@@ -12,9 +12,12 @@ public class Deposit extends JFrame implements ActionListener {
     JLabel labelDepositAmount;
     JTextField textDepositAmount;
     JButton buttonSubmitDeposit, buttonCancelDeposit;
+    Main mainScreen;
 
-    Deposit(String cardNo) {
+    Deposit(String cardNo, Main mainScreen) {
+
         this.cardNo = cardNo;
+        this.mainScreen = mainScreen;
 
         ImageIcon atm = new ImageIcon(ClassLoader.getSystemResource("icon/atm.png"));
         Image atm2 = atm.getImage().getScaledInstance(1260, 850, Image.SCALE_DEFAULT);
@@ -77,12 +80,12 @@ public class Deposit extends JFrame implements ActionListener {
 
                     JOptionPane.showMessageDialog(null, "€" + amount + " deposited successfully");
                     setVisible(false);
-                    new Main(cardNo);
+                    mainScreen.setVisible(true);
 
                 }
             } else if (e.getSource() == buttonCancelDeposit) {
                 setVisible(false);
-                new Main(cardNo);
+                mainScreen.setVisible(true);
             }
 
         } catch (Exception E) {
@@ -94,6 +97,6 @@ public class Deposit extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
 
-        new Deposit("");
+        new Deposit("", null);
     }
 }

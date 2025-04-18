@@ -59,30 +59,37 @@ public class Balance extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == buttonShowBalance);
         try {
+            if (e.getSource() == buttonShowBalance && buttonShowBalance.getText().equals("SHOW")) {
 
-            Connect connect = new Connect();
-            ResultSet isBalance = connect.statement.executeQuery("SELECT * FROM bank WHERE card_no = '" + cardNo + "'");
+                Connect connect = new Connect();
+                ResultSet isBalance = connect.statement.executeQuery("SELECT * FROM bank WHERE card_no = '" + cardNo + "'");
 
-            double balance = 0;
-
-            while (isBalance.next()) {
+                double balance = 0;
 
                 while (isBalance.next()) {
-                    if (isBalance.getString("type").equals("Deposit")) {
-                        balance += Double.parseDouble(isBalance.getString("amount"));
-                    } else {
-                        balance -= Double.parseDouble(isBalance.getString("amount"));
-                    }
+                        if (isBalance.getString("type").equals("Deposit")) {
+                            balance += Double.parseDouble(isBalance.getString("amount"));
+                        } else {
+                            balance -= Double.parseDouble(isBalance.getString("amount"));
+                        }
+                    labelDisplayAmount.setText("€" + String.format("%.2f", balance));
+                    buttonShowBalance.setText("HIDE");
                 }
-                labelDisplayAmount.setText("€" + String.format("%.2f", balance));
-                buttonShowBalance.setText("HIDE");
+
+            } else if (e.getSource() == buttonShowBalance && buttonShowBalance.getText().equals("HIDE")) {
+                labelDisplayAmount.setText("XXXXXXXX");
+                buttonShowBalance.setText("SHOW");
+
+            } else if (e.getSource() == buttonCancelCheckBalance) {
+                new Main(cardNo);
+                setVisible(false);
             }
         } catch (Exception E) {
             E.printStackTrace();
         }
     }
+
 
     public static void main(String[] args) {
         new Balance("");

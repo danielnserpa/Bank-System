@@ -190,6 +190,7 @@ public class Signup extends JFrame implements ActionListener {
         String lastName = textLastName.getText();
         String dob = ((JTextField) chooseDate.getDateEditor().getUiComponent()).getText();
         String gender = null;
+
         if (radioMale.isSelected()){
             gender = "Male";
         } else if (radioFemale.isSelected()) {
@@ -197,6 +198,7 @@ public class Signup extends JFrame implements ActionListener {
         } else if (radioOther.isSelected()){
             gender = "Other";
         }
+
         String email = textEmail.getText();
         String phone = textPhone.getText();
         String address = textAddress.getText();

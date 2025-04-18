@@ -1,7 +1,5 @@
 package org.example;
 
-import com.mysql.cj.log.Log;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,6 +10,7 @@ public class Main extends JFrame implements ActionListener {
     String cardNo;
     JLabel labelWelcomeUser;
     JButton buttonDeposit, buttonWithdraw, buttonCheckBalance, buttonChangePin, buttonGetStatement, buttonExit;
+
 
     Main(String cardNo){
 
@@ -86,7 +85,7 @@ public class Main extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == buttonDeposit) {
-            new Deposit(cardNo);
+            new Deposit(cardNo, this);
             setVisible(false);
 
         } else if (e.getSource() == buttonWithdraw) {
@@ -94,6 +93,8 @@ public class Main extends JFrame implements ActionListener {
             setVisible(false);
 
         } else if (e.getSource() == buttonCheckBalance) {
+            new Balance(cardNo);
+            setVisible(false);
 
         } else if (e.getSource() == buttonGetStatement) {
 
