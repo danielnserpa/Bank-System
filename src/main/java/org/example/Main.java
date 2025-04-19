@@ -77,8 +77,6 @@ public class Main extends JFrame implements ActionListener {
         setUndecorated(true);
         setVisible(true);
 
-
-
     }
 
     @Override

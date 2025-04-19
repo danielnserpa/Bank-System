@@ -5,11 +5,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 public class Withdraw extends JFrame implements ActionListener {
 
-    JLabel labelWithdrawFastCash, labelWithdrawAmount;
+    JLabel labelWithdrawFastCash, labelWithdrawAmount, atmImage;
     JTextField textWithdrawAmount;
     JButton buttonSubmitWithdraw, buttonCancelWithdraw, button50, button100, button200, button500, button1000, buttonOther;
     String cardNo;
@@ -23,7 +24,7 @@ public class Withdraw extends JFrame implements ActionListener {
         ImageIcon atm = new ImageIcon(ClassLoader.getSystemResource("icon/atm.png"));
         Image atm2 = atm.getImage().getScaledInstance(1260, 850, Image.SCALE_DEFAULT);
         ImageIcon atm3 = new ImageIcon(atm2);
-        JLabel atmImage = new JLabel(atm3);
+        atmImage = new JLabel(atm3);
         atmImage.setBounds(0, 0,1260, 850);
         add(atmImage);
 
@@ -33,15 +34,12 @@ public class Withdraw extends JFrame implements ActionListener {
         labelWithdrawFastCash.setBounds(500, 335, 450, 35);
         atmImage.add(labelWithdrawFastCash);
 
-
-        // Tambem adicionar depois que o usuario clicar em other amount
-//        labelWithdrawAmount = new JLabel("ENTER THE AMOUNT YOU WISH TO WITHDRAW: ");
-//        labelWithdrawAmount.setForeground(Color.white);
-//        labelWithdrawAmount.setFont(new Font("System", Font.BOLD, 18));
-//        labelWithdrawAmount.setBounds(425, 335, 450, 35);
+        labelWithdrawAmount = new JLabel("ENTER THE AMOUNT YOU WISH TO WITHDRAW: ");
+        labelWithdrawAmount.setForeground(Color.white);
+        labelWithdrawAmount.setFont(new Font("System", Font.BOLD, 18));
+        labelWithdrawAmount.setBounds(425, 335, 450, 35);
 //        atmImage.add(labelWithdrawAmount);
 
-        // Adicionar depois que o usuario clicar em Other amount
         textWithdrawAmount = new JTextField();
         textWithdrawAmount.setBounds(425, 385, 405, 25);
         textWithdrawAmount.setFont(new Font("Raleway", Font.PLAIN, 20));
@@ -108,16 +106,57 @@ public class Withdraw extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         try {
-            String amount = textWithdrawAmount.getText();
+
             Date date = new Date();
+            double definedWithdrawAmount = 0;
+            boolean triggerWithdraw = false;
 
-            // ADD A CONDITION TO ALLOW WITHDRAWS UP TO MAXIMUM 1500
+            if (e.getSource() == button50) {
+                definedWithdrawAmount = 50;
+                triggerWithdraw = true;
+            } else if (e.getSource() == button100) {
+                definedWithdrawAmount = 100;
+                triggerWithdraw = true;
+            } else if (e.getSource() == button200) {
+                definedWithdrawAmount = 200;
+                triggerWithdraw = true;
+            } else if (e.getSource() == button500) {
+                definedWithdrawAmount = 500;
+                triggerWithdraw = true;
+            } else if (e.getSource() == button1000) {
+                definedWithdrawAmount = 1000;
+                triggerWithdraw = true;
+            } else if (e.getSource() == buttonOther) {
 
+                button50.setVisible(false);
+                button100.setVisible(false);
+                button200.setVisible(false);
+                button500.setVisible(false);
+                button1000.setVisible(false);
+                buttonOther.setVisible(false);
+                labelWithdrawFastCash.setVisible(false);
 
-            if (e.getSource() == buttonSubmitWithdraw) {
+                atmImage.add(labelWithdrawAmount);
+                atmImage.add(textWithdrawAmount);
+                atmImage.add(buttonCancelWithdraw);
+                atmImage.add(buttonSubmitWithdraw);
+
+            } else if (e.getSource() == buttonSubmitWithdraw) {
+
                 if (textWithdrawAmount.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Please enter the amount you wish to withdraw  ");
                 } else {
+                    definedWithdrawAmount = Double.parseDouble(textWithdrawAmount.getText());
+                    triggerWithdraw = true;
+                }
+
+            } else if (e.getSource() == buttonCancelWithdraw) {
+                    dispose();
+                    mainScreen.setVisible(true);
+            }
+
+            if (triggerWithdraw) {
+
                     Connect connect = new Connect();
 
                     ResultSet selectTransactions = connect.statement.executeQuery("SELECT * FROM bank WHERE card_no = '"+cardNo+"'");
@@ -132,7 +171,7 @@ public class Withdraw extends JFrame implements ActionListener {
                         }
                     }
 
-                    if (balance < Double.parseDouble(amount)) {
+                    if (balance < definedWithdrawAmount) {
                         JOptionPane.showMessageDialog(null, "Insufficient funds");
                         return;
                     }
@@ -141,22 +180,19 @@ public class Withdraw extends JFrame implements ActionListener {
                             "'"+cardNo+"'," +
                             "'"+date+"'," +
                             "'Withdraw'," +
-                            "'"+amount+"')");
+                            "'"+definedWithdrawAmount+"')");
 
-                    JOptionPane.showMessageDialog(null, "€" + amount + " withdrew successfully");
+                DecimalFormat format = new DecimalFormat("€#, ##0.##");
+                String formattedAmount = format.format(definedWithdrawAmount);
+
+                    JOptionPane.showMessageDialog(null, formattedAmount + "withdrew successfully");
                     dispose();
                     mainScreen.setVisible(true);
-
                 }
-            } else if (e.getSource() == buttonCancelWithdraw) {
-                dispose();
-                mainScreen.setVisible(true);
-            }
 
         } catch (Exception E) {
             E.printStackTrace();
         }
-
     }
 
     public static void main(String[] args) {
