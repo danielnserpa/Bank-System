@@ -16,7 +16,6 @@ public class Changepin extends JFrame implements ActionListener {
         this.mainScreen = mainScreen;
 
 
-
     }
 
     @Override
