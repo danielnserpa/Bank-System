@@ -9,10 +9,10 @@ import java.util.Date;
 
 public class Withdraw extends JFrame implements ActionListener {
 
-    String cardNo;
     JLabel labelWithdrawAmount;
     JTextField textWithdrawAmount;
-    JButton buttonSubmitWithdraw, buttonCancelWithdraw;
+    JButton buttonSubmitWithdraw, buttonCancelWithdraw, button50, button100, button200, button500, button1000, buttonOther;
+    String cardNo;
     Main mainScreen;
 
     Withdraw(String cardNo, Main mainScreen) {
@@ -27,10 +27,11 @@ public class Withdraw extends JFrame implements ActionListener {
         atmImage.setBounds(0, 0,1260, 850);
         add(atmImage);
 
-        labelWithdrawAmount = new JLabel("ENTER THE AMOUNT YOU WISH TO WITHDRAW: ");
+        labelWithdrawAmount = new JLabel("SELECT WITHDRAW AMOUNT: ");
+//        labelWithdrawAmount = new JLabel("ENTER THE AMOUNT YOU WISH TO WITHDRAW: ");
         labelWithdrawAmount.setForeground(Color.white);
         labelWithdrawAmount.setFont(new Font("System", Font.BOLD, 18));
-        labelWithdrawAmount.setBounds(425, 335, 450, 35);
+        labelWithdrawAmount.setBounds(500, 335, 450, 35);
         atmImage.add(labelWithdrawAmount);
 
         textWithdrawAmount = new JTextField();
@@ -99,12 +100,12 @@ public class Withdraw extends JFrame implements ActionListener {
                             "'"+amount+"')");
 
                     JOptionPane.showMessageDialog(null, "€" + amount + " withdrew successfully");
-                    setVisible(false);
+                    dispose();
                     mainScreen.setVisible(true);
 
                 }
             } else if (e.getSource() == buttonCancelWithdraw) {
-                setVisible(false);
+                dispose();
                 mainScreen.setVisible(true);
             }
 

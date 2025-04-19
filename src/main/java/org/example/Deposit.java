@@ -8,10 +8,10 @@ import java.util.Date;
 
 public class Deposit extends JFrame implements ActionListener {
 
-    String cardNo;
     JLabel labelDepositAmount;
     JTextField textDepositAmount;
     JButton buttonSubmitDeposit, buttonCancelDeposit;
+    String cardNo;
     Main mainScreen;
 
     Deposit(String cardNo, Main mainScreen) {
@@ -79,12 +79,12 @@ public class Deposit extends JFrame implements ActionListener {
                     connect.statement.executeUpdate(addDepositToBankTable);
 
                     JOptionPane.showMessageDialog(null, "€" + amount + " deposited successfully");
-                    setVisible(false);
+                    dispose();
                     mainScreen.setVisible(true);
 
                 }
             } else if (e.getSource() == buttonCancelDeposit) {
-                setVisible(false);
+                dispose();
                 mainScreen.setVisible(true);
             }
 

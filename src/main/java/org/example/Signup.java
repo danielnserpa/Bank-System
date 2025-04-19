@@ -208,7 +208,7 @@ public class Signup extends JFrame implements ActionListener {
         try {
             if (e.getSource() == buttonCancel) {
                 logInScreen.setVisible(true);
-                setVisible(false);
+                dispose();
             } else {
                 if (textFirstName.getText().isEmpty() ||
                         textLastName.getText().isEmpty() ||
@@ -251,7 +251,7 @@ public class Signup extends JFrame implements ActionListener {
                             "\nYour PIN: " + pin);
 
                     new Login();
-                    setVisible(false);
+                    dispose();
                 }
             }
 

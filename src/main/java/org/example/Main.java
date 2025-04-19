@@ -101,8 +101,8 @@ public class Main extends JFrame implements ActionListener {
         } else if (e.getSource() == buttonChangePin) {
 
         } else {
+            dispose();
             new Login();
-            setVisible(false);
 
         }
 

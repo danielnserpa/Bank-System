@@ -8,9 +8,9 @@ import java.sql.ResultSet;
 
 public class Balance extends JFrame implements ActionListener {
 
-    String cardNo;
     JLabel labelCheckBalance, labelDisplayAmount;
     JButton buttonShowBalance, buttonCancelCheckBalance;
+    String cardNo;
     Main mainScreen;
 
     Balance(String cardNo, Main mainScreen) {
@@ -84,8 +84,8 @@ public class Balance extends JFrame implements ActionListener {
                 buttonShowBalance.setText("SHOW");
 
             } else if (e.getSource() == buttonCancelCheckBalance) {
+                dispose();
                 mainScreen.setVisible(true);
-                setVisible(false);
             }
         } catch (Exception E) {
             E.printStackTrace();
