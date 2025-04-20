@@ -85,12 +85,11 @@ public class Withdraw extends JFrame implements ActionListener {
         buttonSubmitWithdraw.setForeground(Color.BLACK);
         buttonSubmitWithdraw.addActionListener(this);
 
-
         buttonCancelWithdraw = new JButton("CANCEL");
-        buttonCancelWithdraw.setBounds(500, 470, 100, 30);
+        buttonCancelWithdraw.setBounds(575, 482, 100, 27);
         buttonCancelWithdraw.setForeground(Color.BLACK);
         buttonCancelWithdraw.addActionListener(this);
-
+        atmImage.add(buttonCancelWithdraw);
 
         setLayout(null);
         setSize(1260, 850);
@@ -136,7 +135,7 @@ public class Withdraw extends JFrame implements ActionListener {
 
                 atmImage.add(labelWithdrawAmount);
                 atmImage.add(textWithdrawAmount);
-                atmImage.add(buttonCancelWithdraw);
+                buttonCancelWithdraw.setBounds(500, 470, 100, 30);
                 atmImage.add(buttonSubmitWithdraw);
 
             } else if (e.getSource() == buttonSubmitWithdraw) {
