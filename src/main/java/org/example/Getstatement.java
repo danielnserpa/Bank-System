@@ -8,6 +8,8 @@ public class Getstatement {
 
     public static void main(String[] args) {
 
+        new Getstatement();
+
     }
 
 }
