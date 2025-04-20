@@ -39,13 +39,13 @@ public class Deposit extends JFrame implements ActionListener {
         atmImage.add(textDepositAmount);
 
         buttonSubmitDeposit = new JButton("CONFIRM");
-        buttonSubmitDeposit.setBounds(645, 470, 100, 35);
+        buttonSubmitDeposit.setBounds(645, 470, 100, 30);
         buttonSubmitDeposit.setForeground(Color.BLACK);
         buttonSubmitDeposit.addActionListener(this);
         atmImage.add(buttonSubmitDeposit);
 
         buttonCancelDeposit = new JButton("CANCEL");
-        buttonCancelDeposit.setBounds(500, 470, 100, 35);
+        buttonCancelDeposit.setBounds(500, 470, 100, 30);
         buttonCancelDeposit.setForeground(Color.BLACK);
         buttonCancelDeposit.addActionListener(this);
         atmImage.add(buttonCancelDeposit);

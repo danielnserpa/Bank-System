@@ -30,42 +30,42 @@ public class Main extends JFrame implements ActionListener {
         atmImage.add(labelWelcomeUser);
 
         buttonDeposit = new JButton("Deposit");
-        buttonDeposit.setBounds(400, 408, 115, 27);
+        buttonDeposit.setBounds(400, 408, 115, 30);
         buttonDeposit.setForeground((Color.BLACK));
         buttonDeposit.setFont(new Font("System", Font.BOLD, 16));
         buttonDeposit.addActionListener(this);
         atmImage.add(buttonDeposit);
 
         buttonWithdraw = new JButton("Withdraw");
-        buttonWithdraw.setBounds(400, 445, 115, 27);
+        buttonWithdraw.setBounds(400, 445, 115, 30);
         buttonWithdraw.setForeground((Color.BLACK));
         buttonWithdraw.setFont(new Font("System", Font.BOLD, 16));
         buttonWithdraw.addActionListener(this);
         atmImage.add(buttonWithdraw);
 
         buttonCheckBalance = new JButton("Balance");
-        buttonCheckBalance.setBounds(400, 482, 115, 27);
+        buttonCheckBalance.setBounds(400, 482, 115, 30);
         buttonCheckBalance.setForeground((Color.BLACK));
         buttonCheckBalance.setFont(new Font("System", Font.BOLD, 16));
         buttonCheckBalance.addActionListener(this);
         atmImage.add(buttonCheckBalance);
 
         buttonGetStatement = new JButton("Get Statement");
-        buttonGetStatement.setBounds(710, 408, 150, 27);
+        buttonGetStatement.setBounds(710, 408, 150, 30);
         buttonGetStatement.setForeground((Color.BLACK));
         buttonGetStatement.setFont(new Font("System", Font.BOLD, 16));
         buttonGetStatement.addActionListener(this);
         atmImage.add(buttonGetStatement);
 
         buttonChangePin = new JButton("Change PIN");
-        buttonChangePin.setBounds(710, 445, 150, 27);
+        buttonChangePin.setBounds(710, 445, 150, 30);
         buttonChangePin.setForeground((Color.BLACK));
         buttonChangePin.setFont(new Font("System", Font.BOLD, 16));
         buttonChangePin.addActionListener(this);
         atmImage.add(buttonChangePin);
 
         buttonExit = new JButton("Exit");
-        buttonExit.setBounds(710, 482, 150, 27);
+        buttonExit.setBounds(710, 482, 150, 30);
         buttonExit.setForeground((Color.BLACK));
         buttonExit.setFont(new Font("System", Font.BOLD, 16));
         buttonExit.addActionListener(this);
@@ -97,6 +97,8 @@ public class Main extends JFrame implements ActionListener {
         } else if (e.getSource() == buttonGetStatement) {
 
         } else if (e.getSource() == buttonChangePin) {
+            new Changepin(cardNo, this);
+            setVisible(false);
 
         } else {
             dispose();
