@@ -11,7 +11,7 @@ public class Login extends JFrame implements ActionListener {
     JLabel labelLogInTitle, labelCardNumber, labelPin;
     JTextField textInsertCardNumber;
     JPasswordField passwordInsertPin;
-    JButton buttonSignIn, buttonClear, buttonSignUp;
+    JButton buttonSignIn, buttonClear, buttonSignUp, buttonExit;
 
     Login() {
 
@@ -73,6 +73,13 @@ public class Login extends JFrame implements ActionListener {
         buttonSignUp.addActionListener(this);
         add(buttonSignUp);
 
+        buttonExit = new JButton("EXIT");
+        buttonExit.setForeground(Color.BLACK);
+        buttonExit.setBounds(575, 525, 100, 30);
+        buttonExit.setFont(new Font("Arial", Font.BOLD, 14));
+        buttonExit.addActionListener(this);
+        add(buttonExit);
+
         ImageIcon bank1 = new ImageIcon(ClassLoader.getSystemResource("icon/bankbg.jpg"));
         Image bank2 = bank1.getImage().getScaledInstance(736, 582, Image.SCALE_DEFAULT);
         ImageIcon bank3 = new ImageIcon(bank2);
@@ -130,6 +137,8 @@ public class Login extends JFrame implements ActionListener {
                 Signup signup = new Signup(this);
                 signup.setVisible(true);
                 this.setVisible(false);
+            } else if (e.getSource() == buttonExit) {
+                System.exit(0);
             }
 
         } catch (Exception E) {

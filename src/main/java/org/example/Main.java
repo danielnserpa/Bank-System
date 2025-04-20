@@ -4,10 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
 public class Main extends JFrame implements ActionListener {
 
     String cardNo;
+    String userName = "USER";
     JLabel labelWelcomeUser;
     JButton buttonDeposit, buttonWithdraw, buttonCheckBalance, buttonChangePin, buttonGetStatement, buttonExit;
 
@@ -23,7 +25,20 @@ public class Main extends JFrame implements ActionListener {
         atmImage.setBounds(0, 0,1260, 850);
         add(atmImage);
 
-        labelWelcomeUser = new JLabel("Welcome, " + "USER");
+        try {
+
+            Connect connect = new Connect();
+            ResultSet isUser = connect.statement.executeQuery("SELECT first_name FROM signup WHERE card_no = '"+cardNo+"'");
+
+            if (isUser.next()) {
+                userName = isUser.getString("first_name").toUpperCase();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        labelWelcomeUser = new JLabel("Welcome, " + userName);
         labelWelcomeUser.setBounds(400, 330, 700, 35);
         labelWelcomeUser.setForeground(Color.WHITE);
         labelWelcomeUser.setFont(new Font("Raleway", Font.BOLD, 16));
