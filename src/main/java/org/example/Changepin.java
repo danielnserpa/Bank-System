@@ -33,42 +33,49 @@ public class Changepin extends JFrame implements ActionListener {
         labelOldPin = new JLabel("Old PIN: ");
         labelOldPin.setForeground(Color.WHITE);
         labelOldPin.setFont(new Font("Raleway", Font.BOLD, 16));
-        labelOldPin.setBounds(400, 400, 100, 25);
+        labelOldPin.setBounds(400, 380, 100, 25);
         atmImage.add(labelOldPin);
 
         textOldPin = new JTextField();
-        textOldPin.setBounds(525, 400, 250, 25);
-        textOldPin.setFont(new Font("Raleway", Font.PLAIN, 20));
+        textOldPin.setBounds(525, 380, 200, 25);
+        textOldPin.setFont(new Font("Raleway", Font.PLAIN, 16));
         atmImage.add(textOldPin);
 
         labelNewPin = new JLabel("New PIN: ");
         labelNewPin.setForeground(Color.WHITE);
         labelNewPin.setFont(new Font("Raleway", Font.BOLD, 16));
-        labelNewPin.setBounds(400, 440, 100, 25);
+        labelNewPin.setBounds(400, 415, 100, 25);
         atmImage.add(labelNewPin);
 
         textNewPin = new JTextField();
-        textNewPin.setBounds(525, 440, 250, 25);
-        textNewPin.setFont(new Font("Raleway", Font.PLAIN, 20));
+        textNewPin.setBounds(525, 415, 200, 25);
+        textNewPin.setFont(new Font("Raleway", Font.PLAIN, 16));
         atmImage.add(textNewPin);
 
         labelConfirmNewPin = new JLabel("Confirm PIN: ");
         labelConfirmNewPin.setForeground(Color.WHITE);
         labelConfirmNewPin.setFont(new Font("Raleway", Font.BOLD, 16));
-        labelConfirmNewPin.setBounds(400, 480, 110, 25);
+        labelConfirmNewPin.setBounds(400, 450, 110, 25);
         atmImage.add(labelConfirmNewPin);
 
         textConfirmNewPin = new JTextField();
-        textConfirmNewPin.setBounds(525, 480, 250, 25);
-        textConfirmNewPin.setFont(new Font("Raleway", Font.PLAIN, 20));
+        textConfirmNewPin.setBounds(525, 450, 200, 25);
+        textConfirmNewPin.setFont(new Font("Raleway", Font.PLAIN, 16));
         atmImage.add(textConfirmNewPin);
+
+        buttonCancelChangePin = new JButton("CANCEL");
+        buttonCancelChangePin.setBounds(550, 490, 100, 35);
+        buttonCancelChangePin.setForeground(Color.BLACK);
+        buttonCancelChangePin.addActionListener(this);
+        atmImage.add(buttonCancelChangePin);
+
+
 
         setLayout(null);
         setSize(1260, 850);
         setLocation(200, 50);
         setUndecorated(true);
         setVisible(true);
-
 
     }
 
