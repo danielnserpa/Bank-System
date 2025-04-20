@@ -38,13 +38,11 @@ public class Withdraw extends JFrame implements ActionListener {
         labelWithdrawAmount.setForeground(Color.white);
         labelWithdrawAmount.setFont(new Font("System", Font.BOLD, 18));
         labelWithdrawAmount.setBounds(425, 335, 450, 35);
-//        atmImage.add(labelWithdrawAmount);
 
         textWithdrawAmount = new JTextField();
         textWithdrawAmount.setBounds(425, 385, 405, 25);
         textWithdrawAmount.setFont(new Font("Raleway", Font.PLAIN, 20));
         textWithdrawAmount.setHorizontalAlignment(JTextField.CENTER);
-//        atmImage.add(textWithdrawAmount);
 
         button50 = new JButton("€50");
         button50.setBounds(400, 408, 75, 27);
