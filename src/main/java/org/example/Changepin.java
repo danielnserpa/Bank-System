@@ -37,7 +37,7 @@ public class Changepin extends JFrame implements ActionListener {
         atmImage.add(labelOldPin);
 
         textOldPin = new JTextField();
-        textOldPin.setBounds(525, 380, 200, 25);
+        textOldPin.setBounds(515, 380, 300, 25);
         textOldPin.setFont(new Font("Raleway", Font.PLAIN, 16));
         atmImage.add(textOldPin);
 
@@ -48,7 +48,7 @@ public class Changepin extends JFrame implements ActionListener {
         atmImage.add(labelNewPin);
 
         textNewPin = new JTextField();
-        textNewPin.setBounds(525, 415, 200, 25);
+        textNewPin.setBounds(515, 415, 300, 25);
         textNewPin.setFont(new Font("Raleway", Font.PLAIN, 16));
         atmImage.add(textNewPin);
 
@@ -59,15 +59,21 @@ public class Changepin extends JFrame implements ActionListener {
         atmImage.add(labelConfirmNewPin);
 
         textConfirmNewPin = new JTextField();
-        textConfirmNewPin.setBounds(525, 450, 200, 25);
+        textConfirmNewPin.setBounds(515, 450, 300, 25);
         textConfirmNewPin.setFont(new Font("Raleway", Font.PLAIN, 16));
         atmImage.add(textConfirmNewPin);
 
         buttonCancelChangePin = new JButton("CANCEL");
-        buttonCancelChangePin.setBounds(550, 490, 100, 35);
+        buttonCancelChangePin.setBounds(540, 490, 100, 30);
         buttonCancelChangePin.setForeground(Color.BLACK);
         buttonCancelChangePin.addActionListener(this);
         atmImage.add(buttonCancelChangePin);
+
+        buttonConfirmChangePin = new JButton("CONFIRM");
+        buttonConfirmChangePin.setBounds(665, 490, 100, 30);
+        buttonConfirmChangePin.setForeground(Color.BLACK);
+        buttonConfirmChangePin.addActionListener(this);
+        atmImage.add(buttonConfirmChangePin);
 
 
 
