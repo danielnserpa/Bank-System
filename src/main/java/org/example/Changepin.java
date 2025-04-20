@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
 public class Changepin extends JFrame implements ActionListener {
 
@@ -87,6 +88,49 @@ public class Changepin extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        try {
+
+            if (e.getSource() == buttonConfirmChangePin) {
+
+                String oldPin = textOldPin.getText();
+                String newPin = textNewPin.getText();
+                String confirmPin = textConfirmNewPin.getText();
+
+                if (!newPin.equals(confirmPin)) {
+                    JOptionPane.showMessageDialog(null, "New PIN doesn't match.");
+                    return;
+                }
+
+                Connect connect = new Connect();
+                ResultSet changePin = connect.statement.executeQuery("SELECT * FROM login WHERE card_no = '" +cardNo+ "'");
+
+
+                if (changePin.next()) {
+                    String currentPin = changePin.getString("pin");
+
+                    if (!oldPin.equals(currentPin)) {
+                        JOptionPane.showMessageDialog(null,"Your current PIN is incorrect.");
+                        return;
+                    }
+
+                    connect.statement.executeUpdate("UPDATE login SET pin = '" +newPin+ "' WHERE card_no = '" +cardNo+ "'");
+                    connect.statement.executeUpdate("UPDATE signup SET pin = '" +newPin+ "' WHERE card_no = '" +cardNo+ "'");
+                    JOptionPane.showMessageDialog(null, "Your PIN was updated successfully");
+                    dispose();
+                    mainScreen.setVisible(true);
+
+                }
+
+            } else if (e.getSource() == buttonCancelChangePin) {
+                dispose();
+                mainScreen.setVisible(true);
+            }
+
+        } catch (Exception E) {
+            E.printStackTrace();
+        }
+
     }
 
     public static void main(String[] args) {

@@ -65,7 +65,7 @@ public class Balance extends JFrame implements ActionListener {
             if (e.getSource() == buttonShowBalance && buttonShowBalance.getText().equals("SHOW")) {
 
                 Connect connect = new Connect();
-                ResultSet isBalance = connect.statement.executeQuery("SELECT * FROM bank WHERE card_no = '" + cardNo + "'");
+                ResultSet isBalance = connect.statement.executeQuery("SELECT * FROM bank WHERE card_no = '" +cardNo+ "'");
 
                 double balance = 0;
 
@@ -75,6 +75,11 @@ public class Balance extends JFrame implements ActionListener {
                         } else {
                             balance -= Double.parseDouble(isBalance.getString("amount"));
                         }
+                    labelDisplayAmount.setText("€" + String.format("%.2f", balance));
+                    buttonShowBalance.setText("HIDE");
+                }
+
+                if (!isBalance.next()) {
                     labelDisplayAmount.setText("€" + String.format("%.2f", balance));
                     buttonShowBalance.setText("HIDE");
                 }
