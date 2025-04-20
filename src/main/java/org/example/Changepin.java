@@ -76,8 +76,6 @@ public class Changepin extends JFrame implements ActionListener {
         buttonConfirmChangePin.addActionListener(this);
         atmImage.add(buttonConfirmChangePin);
 
-
-
         setLayout(null);
         setSize(1260, 850);
         setLocation(200, 50);
@@ -105,7 +103,6 @@ public class Changepin extends JFrame implements ActionListener {
                 Connect connect = new Connect();
                 ResultSet changePin = connect.statement.executeQuery("SELECT * FROM login WHERE card_no = '" +cardNo+ "'");
 
-
                 if (changePin.next()) {
                     String currentPin = changePin.getString("pin");
 
@@ -117,9 +114,9 @@ public class Changepin extends JFrame implements ActionListener {
                     connect.statement.executeUpdate("UPDATE login SET pin = '" +newPin+ "' WHERE card_no = '" +cardNo+ "'");
                     connect.statement.executeUpdate("UPDATE signup SET pin = '" +newPin+ "' WHERE card_no = '" +cardNo+ "'");
                     JOptionPane.showMessageDialog(null, "Your PIN was updated successfully");
+
                     dispose();
                     mainScreen.setVisible(true);
-
                 }
 
             } else if (e.getSource() == buttonCancelChangePin) {
