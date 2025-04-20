@@ -110,7 +110,7 @@ public class Signup extends JFrame implements ActionListener {
 
         textEmail = new JTextField();
         textEmail.setFont(new Font("Raleway", Font.PLAIN, 14));
-        textEmail.setBounds(340, 391, 350, 30);
+        textEmail.setBounds(340, 390, 350, 30);
         add(textEmail);
 
         labelPhone = new JLabel("Phone: ");
@@ -177,7 +177,6 @@ public class Signup extends JFrame implements ActionListener {
         setLayout(null);
         setSize(850, 800);
         setLocation(360, 40);
-        setUndecorated(true);
         setVisible(true);
 
     }

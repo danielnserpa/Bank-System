@@ -61,7 +61,7 @@ public class Login extends JFrame implements ActionListener {
 
         buttonClear = new JButton("CLEAR");
         buttonClear.setForeground(Color.BLACK);
-        buttonClear.setBounds(380, 305, 100, 30);
+        buttonClear.setBounds(379, 305, 100, 30);
         buttonClear.setFont(new Font("Arial", Font.BOLD, 14));
         buttonClear.addActionListener(this);
         add(buttonClear);
@@ -75,7 +75,7 @@ public class Login extends JFrame implements ActionListener {
 
         buttonExit = new JButton("EXIT");
         buttonExit.setForeground(Color.BLACK);
-        buttonExit.setBounds(575, 525, 100, 30);
+        buttonExit.setBounds(575, 526, 100, 30);
         buttonExit.setFont(new Font("Arial", Font.BOLD, 14));
         buttonExit.addActionListener(this);
         add(buttonExit);
