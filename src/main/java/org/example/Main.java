@@ -94,6 +94,61 @@ public class Main extends JFrame implements ActionListener {
 
     }
 
+    public void getStatement(String cardNo) {
+        this.cardNo = cardNo;
+
+        try {
+            Connect connect = new Connect();
+
+            StringBuilder pastTransactions = new StringBuilder();
+
+            ResultSet selectTransactions = connect.statement.executeQuery("SELECT date, type, amount FROM bank WHERE card_no = '" +cardNo+ "' ORDER BY date DESC");
+
+            while (selectTransactions.next()) {
+
+                String date = selectTransactions.getString("date");
+                String type = selectTransactions.getString("type");
+                String amount = selectTransactions.getString("amount");
+
+                String symbol = "";
+                String space = "";
+
+                if (type.equalsIgnoreCase("deposit")){
+                    symbol = "+";
+                    space = "  ";
+                } else if (type.equalsIgnoreCase("withdraw")){
+                    symbol = "-";
+                };
+
+                pastTransactions.append(date)
+                        .append(" | ")
+                        .append(type)
+                        .append(space)
+                        .append(" | € ")
+                        .append(symbol)
+                        .append(amount)
+                        .append("\n");
+
+            }
+
+            if (pastTransactions.length() == 0) {
+                JOptionPane.showMessageDialog(null, "No transactions found.");
+            } else {
+
+                JTextArea textArea = new JTextArea(pastTransactions.toString());
+                textArea.setEditable(false);
+                JScrollPane scrollPane = new JScrollPane(textArea);
+                scrollPane.setPreferredSize(new Dimension(500, 300));
+
+                JOptionPane.showMessageDialog(null, scrollPane, "Past Transactions: ", JOptionPane.INFORMATION_MESSAGE);
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -110,6 +165,8 @@ public class Main extends JFrame implements ActionListener {
             setVisible(false);
 
         } else if (e.getSource() == buttonGetStatement) {
+            getStatement(cardNo);
+
 
         } else if (e.getSource() == buttonChangePin) {
             new Changepin(cardNo, this);
