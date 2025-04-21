@@ -28,13 +28,26 @@ A simple bank management system built with **Java**, featuring a graphical user 
 The connection is handled in the `Connect.java` class using JDBC:
 
 ```java
-Class.forName("com.mysql.cj.jdbc.Driver");
-Connection conn = DriverManager.getConnection(
-    "jdbc:mysql://localhost:3306/bank_system",
-    "root",
-    "your_password"
-);
-Statement stmt = conn.createStatement();
+// Connect.java
+
+import java.sql.*;
+
+public class Connect {
+
+    Connection connection;
+    Statement statement;
+
+    public Connect() {
+        try {
+            // Establishing the connection to the database
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/atmsystem", "root", "root123");
+            statement = connection.createStatement();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
 ```
 
 ## 🛠️ How to Run the Project:
