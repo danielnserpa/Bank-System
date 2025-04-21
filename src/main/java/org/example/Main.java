@@ -131,7 +131,7 @@ public class Main extends JFrame implements ActionListener {
 
             }
 
-            if (pastTransactions.length() == 0) {
+            if (pastTransactions.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "No transactions found.");
             } else {
 
