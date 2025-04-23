@@ -206,6 +206,7 @@ public class Signup extends JFrame implements ActionListener {
         String cardNo = String.valueOf(randomCardNo);
         String pin = textPIN.getText();
 
+
         try {
             if (e.getSource() == buttonCancel) {
                 logInScreen.setVisible(true);
