@@ -200,6 +200,7 @@ public class Signup extends JFrame implements ActionListener {
             gender = "Other";
         }
 
+
         String email = textEmail.getText();
         String phone = textPhone.getText();
         String address = textAddress.getText();
