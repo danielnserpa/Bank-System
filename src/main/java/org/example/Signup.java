@@ -1,9 +1,13 @@
 package org.example;
 
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Properties;
 import java.util.Random;
 import com.toedter.calendar.JDateChooser;
 
@@ -249,6 +253,8 @@ public class Signup extends JFrame implements ActionListener {
                             "\n" +
                             "\nYour Card Number: " + cardNo +
                             "\nYour PIN: " + pin);
+
+                    EmailSender.sendEmail(firstName, email, cardNo, pin);
 
                     new Login();
                     dispose();
