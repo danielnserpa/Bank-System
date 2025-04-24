@@ -16,12 +16,13 @@ A simple bank management system built with **Java**, featuring a graphical user 
 
 ## ⚙️ Tech Stack
 
-| Technology | Description                     |
-|------------|---------------------------------|
-| Java       | Main programming language       |
-| Swing      | GUI framework for desktop apps  |
-| JDBC       | Java Database Connectivity API  |
-| MySQL      | Relational database             |
+| Technology | Description                    |
+|------------|--------------------------------|
+| Java       | Main programming language      |
+| Swing      | GUI framework for desktop apps |
+| JDBC       | Java Database Connectivity API |
+| Java Mail  | JavaMail API                   |
+| MySQL      | Relational database            |
 
 ## 🔌 Database Connection (JDBC)
 
