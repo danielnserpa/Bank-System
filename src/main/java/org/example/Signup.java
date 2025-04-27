@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Random;
 import com.toedter.calendar.JDateChooser;
 
@@ -76,6 +77,22 @@ public class Signup extends JFrame implements ActionListener {
         chooseDate = new JDateChooser();
         chooseDate.setForeground(new Color(105, 105, 105));
         chooseDate.setBounds(340, 290,370, 30);
+
+        Calendar minCalendar = Calendar.getInstance();
+        minCalendar.add(Calendar.YEAR, -18);
+        chooseDate.setMaxSelectableDate(minCalendar.getTime());
+
+        Calendar maxCalendar = Calendar.getInstance();
+        maxCalendar.add(Calendar.YEAR, -100);
+        chooseDate.setMinSelectableDate(maxCalendar.getTime());
+
+        chooseDate.getCalendarButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chooseDate.setDate(minCalendar.getTime());
+            }
+        });
+
         add(chooseDate);
 
         labelGender = new JLabel("Gender: ");
@@ -212,6 +229,7 @@ public class Signup extends JFrame implements ActionListener {
             return false;
         }
 
+        // ADICIONAR VALIDACAO LA EM CIMA PARA CONTAR SOMENTE +18 OU -100
         if (dob.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please select your Date of Birth.");
             return false;
