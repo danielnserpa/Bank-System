@@ -243,7 +243,7 @@ public class Signup extends JFrame implements ActionListener {
         if (email.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter your email");
             return false;
-        } else if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+        } else if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")) {
             JOptionPane.showMessageDialog(null, "Please enter a valid email address");
             return false;
         }
@@ -274,6 +274,8 @@ public class Signup extends JFrame implements ActionListener {
 
         return true;
     }
+
+    // CHECAR SE TODAS AS VALIDACOES ESTAO FUNCIONANDO
 
     @Override
     public void actionPerformed(ActionEvent e) {
