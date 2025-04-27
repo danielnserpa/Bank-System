@@ -322,18 +322,6 @@ public class Signup extends JFrame implements ActionListener {
             if (!validateFields()) {
                 return;
             }
-                if (textFirstName.getText().isEmpty() ||
-                        textLastName.getText().isEmpty() ||
-                        dob.isEmpty() ||
-                        gender == null ||
-                        textEmail.getText().isEmpty() ||
-                        textPhone.getText().isEmpty() ||
-                        textAddress.getText().isEmpty() ||
-                        textPIN.getText().isEmpty()) {
-
-                    JOptionPane.showMessageDialog(null, "Please fill all fields");
-
-                } else {
 
                     Connect connect = new Connect();
                     String addUserToSignUpTable = "INSERT INTO signup VALUES (" +
@@ -366,7 +354,7 @@ public class Signup extends JFrame implements ActionListener {
 
                     new Login();
                     dispose();
-                }
+
 
 
             } catch(Exception E){
