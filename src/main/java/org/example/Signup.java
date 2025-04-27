@@ -210,7 +210,7 @@ public class Signup extends JFrame implements ActionListener {
         String email = textEmail.getText();
         String phone = textPhone.getText();
         String address = textAddress.getText();
-        String pin = Arrays.toString(textPIN.getPassword());
+        String pin = new String(textPIN.getPassword());
         boolean genderSelected = radioMale.isSelected() || radioFemale.isSelected() || radioOther.isSelected();
 
         if (firstName.isEmpty()) {
@@ -231,7 +231,7 @@ public class Signup extends JFrame implements ActionListener {
 
 
         if (dob.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please select your Date of Birth.");
+            JOptionPane.showMessageDialog(null, "Please select your date of birth");
             return false;
         }
 
