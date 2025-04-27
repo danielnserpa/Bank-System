@@ -229,7 +229,7 @@ public class Signup extends JFrame implements ActionListener {
             return false;
         }
 
-        // ADICIONAR VALIDACAO LA EM CIMA PARA CONTAR SOMENTE +18 OU -100
+
         if (dob.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please select your Date of Birth.");
             return false;
@@ -256,18 +256,23 @@ public class Signup extends JFrame implements ActionListener {
             return false;
         }
 
-        if (address.isEmpty() || !address.matches("^\\d+\\s+.*")) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid address");
+        if (address.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter your address");
+            return false;
+        } else if (!address.matches("^\\d+\\s+.*")) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid address starting with your house number");
             return false;
         }
 
-        if (pin.isEmpty() || !pin.matches("\\d{4}")) {
+        if (pin.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter your PIN");
+            return false;
+        } else if (!pin.matches("\\d{4}")) {
             JOptionPane.showMessageDialog(null, "Your PIN must have 4 numbers");
             return false;
         }
 
         return true;
-
     }
 
     @Override
