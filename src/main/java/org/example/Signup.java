@@ -5,6 +5,8 @@ package org.example;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Random;
 import com.toedter.calendar.JDateChooser;
 
@@ -180,6 +182,83 @@ public class Signup extends JFrame implements ActionListener {
         setLocation(360, 40);
         setUndecorated(true);
         setVisible(true);
+
+    }
+
+    public boolean validateFields() {
+
+        String firstName = textFirstName.getText();
+        String lastName = textLastName.getText();
+        String dob = ((JTextField) chooseDate.getDateEditor().getUiComponent()).getText();
+        String email = textEmail.getText();
+        String phone = textPhone.getText();
+        String address = textAddress.getText();
+        String pin = Arrays.toString(textPIN.getPassword());
+        boolean genderSelected = radioMale.isSelected() || radioFemale.isSelected() || radioOther.isSelected();
+
+        if (!firstName.matches("[a-zA-Z]+") || firstName.length() < 3) {
+            JOptionPane.showMessageDialog(null, "First name must contain only letters and at least 3 characters");
+            return false;
+        }
+
+        if (!lastName.matches("a-zA-Z+") || lastName.length() < 3) {
+            JOptionPane.showMessageDialog(null, "Last name must contain only letters and at least 3 characters");
+            return false;
+        }
+
+        if (dob.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please select your Date of Birth.");
+            return false;
+        } else {
+            try {
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                java.util.Date birthDate = sdf.parse(dob);
+                java.util.Date today = new java.util.Date();
+
+                long ageInMillis = today.getTime() - birthDate.getTime();
+                long ageInYears = ageInMillis / (1000L * 60 * 60 * 24 * 365);
+
+                if (ageInYears < 18) {
+                    JOptionPane.showMessageDialog(null, "You must be at least 18 years old.");
+                    return false;
+                } else if (ageInYears > 100) {
+                    JOptionPane.showMessageDialog(null, "Age cannot be greater than 100 years.");
+                    return false;
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Invalid Date of Birth format.");
+                return false;
+            }
+        }
+
+        if (!genderSelected) {
+            JOptionPane.showMessageDialog(null, "Please select your gender");
+            return false;
+        }
+
+        if (email.isEmpty() || !email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid email address");
+            return false;
+        }
+
+        if (phone.isEmpty() || !phone.matches("\\d{9,10}")) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid phone number");
+            return false;
+        }
+
+        if (address.isEmpty() || !address.matches("^\\d+\\s+.*")) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid address");
+            return false;
+        }
+
+        if (pin.isEmpty() || !pin.matches("\\d{4}")) {
+            JOptionPane.showMessageDialog(null, "Your PIN must have 4 numbers");
+            return false;
+        }
+
+        return true;
 
     }
 
