@@ -264,6 +264,7 @@ public class Signup extends JFrame implements ActionListener {
                 E.printStackTrace();
             }
 
+
             // Exception handler
 
     }

@@ -1,6 +1,6 @@
 ﻿# 🏦 Bank System
 
-A simple bank management system built with **Java**, featuring a graphical user interface using **Swing**, and connected to a **MySQL** database via **JDBC**.
+A bank management system built with **Java**, featuring a graphical user interface using **Swing**, and connected to a **MySQL** database via **JDBC**.
 
 ## 📌 Features
 
@@ -58,13 +58,12 @@ git clone https://github.com/your-username/java-bank-system.git
 ```
 2. Open the project in your IDE
 
-* Recommended: IntelliJ IDEA or Eclipse
 
 3. Configure the database
 
 * Make sure MySQL is installed and running
 
-* Create a database called bank_system
+* Create a database called atmsystem
 
 * Use the schema below to create the necessary tables
 
@@ -76,12 +75,12 @@ git clone https://github.com/your-username/java-bank-system.git
 
 5. Run the project
 
-* Start by running Signup.java to register a user
+* Start by running Login
 
 ## 🧾 Database Schema
 ```java
-CREATE DATABASE IF NOT EXISTS bank_system;
-USE bank_system;
+CREATE DATABASE IF NOT EXISTS atmsystem;
+USE atmsystem;
 
 CREATE TABLE signup (
   form_no VARCHAR(20),
