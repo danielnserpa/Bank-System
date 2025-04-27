@@ -62,27 +62,42 @@ public class Deposit extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         try {
-            String amount = textDepositAmount.getText();
+
+            String amountText = textDepositAmount.getText();
             Date date = new Date();
 
             if (e.getSource() == buttonSubmitDeposit) {
                 if (textDepositAmount.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Please enter the amount you wish to deposit  ");
-                } else {
+                    return;
+                }
+
+                if (!amountText.matches("^\\d+(\\.\\d+)?$")) {
+                    JOptionPane.showMessageDialog(null, "Please enter a valid amount");
+                    return;
+                }
+
+                double amount = Double.parseDouble(amountText);
+
+                if (amount > 1500) {
+                    JOptionPane.showMessageDialog(null, "The maximum deposit amount is €1500");
+                    return;
+                }
+
                     Connect connect = new Connect();
                     String addDepositToBankTable = "INSERT INTO bank VALUES (" +
                             "'"+cardNo+"'," +
                             "'"+date+"'," +
                             "'Deposit'," +
-                            "'"+amount+"')";
+                            "'"+amountText+"')";
 
                     connect.statement.executeUpdate(addDepositToBankTable);
 
-                    JOptionPane.showMessageDialog(null, "€" + amount + " deposited successfully");
+                    JOptionPane.showMessageDialog(null, "€" + amountText + " deposited successfully");
                     dispose();
                     mainScreen.setVisible(true);
 
-                }
+
             } else if (e.getSource() == buttonCancelDeposit) {
                 dispose();
                 mainScreen.setVisible(true);
