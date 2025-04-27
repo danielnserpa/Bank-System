@@ -5,6 +5,7 @@ package org.example;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -307,7 +308,18 @@ public class Signup extends JFrame implements ActionListener {
                 logInScreen.setVisible(true);
                 dispose();
                 return;
-            } else if (!validateFields()) {
+            }
+
+            Connect connect2 = new Connect();
+            String checkEmailQuery = "SELECT * FROM signup WHERE email = '" +email+ "'";
+            ResultSet rs = connect2.statement.executeQuery(checkEmailQuery);
+
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "This email is already registered");
+                return;
+            }
+
+            if (!validateFields()) {
                 return;
             }
                 if (textFirstName.getText().isEmpty() ||
