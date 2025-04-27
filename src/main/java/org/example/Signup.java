@@ -196,12 +196,18 @@ public class Signup extends JFrame implements ActionListener {
         String pin = Arrays.toString(textPIN.getPassword());
         boolean genderSelected = radioMale.isSelected() || radioFemale.isSelected() || radioOther.isSelected();
 
-        if (!firstName.matches("[a-zA-Z]+") || firstName.length() < 3) {
+        if (firstName.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter your first name");
+            return false;
+        } else if (!firstName.matches("[a-zA-Z]+") || firstName.length() < 3) {
             JOptionPane.showMessageDialog(null, "First name must contain only letters and at least 3 characters");
             return false;
         }
 
-        if (!lastName.matches("a-zA-Z+") || lastName.length() < 3) {
+        if (lastName.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter your last name");
+            return false;
+        } else if (!lastName.matches("[a-zA-Z+]+") || lastName.length() < 3) {
             JOptionPane.showMessageDialog(null, "Last name must contain only letters and at least 3 characters");
             return false;
         }
@@ -209,28 +215,6 @@ public class Signup extends JFrame implements ActionListener {
         if (dob.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please select your Date of Birth.");
             return false;
-        } else {
-            try {
-
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                java.util.Date birthDate = sdf.parse(dob);
-                java.util.Date today = new java.util.Date();
-
-                long ageInMillis = today.getTime() - birthDate.getTime();
-                long ageInYears = ageInMillis / (1000L * 60 * 60 * 24 * 365);
-
-                if (ageInYears < 18) {
-                    JOptionPane.showMessageDialog(null, "You must be at least 18 years old.");
-                    return false;
-                } else if (ageInYears > 100) {
-                    JOptionPane.showMessageDialog(null, "Age cannot be greater than 100 years.");
-                    return false;
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Invalid Date of Birth format.");
-                return false;
-            }
         }
 
         if (!genderSelected) {
@@ -238,13 +222,19 @@ public class Signup extends JFrame implements ActionListener {
             return false;
         }
 
-        if (email.isEmpty() || !email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+        if (email.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter your email");
+            return false;
+        } else if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
             JOptionPane.showMessageDialog(null, "Please enter a valid email address");
             return false;
         }
 
-        if (phone.isEmpty() || !phone.matches("\\d{9,10}")) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid phone number");
+        if (phone.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter your phone number");
+            return false;
+        } else if (!phone.matches("\\d{9,10}")) {
+            JOptionPane.showMessageDialog(null, "Your phone number must have 9 or 10 numbers");
             return false;
         }
 
@@ -291,7 +281,10 @@ public class Signup extends JFrame implements ActionListener {
             if (e.getSource() == buttonCancel) {
                 logInScreen.setVisible(true);
                 dispose();
-            } else {
+                return;
+            } else if (!validateFields()) {
+                return;
+            }
                 if (textFirstName.getText().isEmpty() ||
                         textLastName.getText().isEmpty() ||
                         dob.isEmpty() ||
@@ -337,7 +330,7 @@ public class Signup extends JFrame implements ActionListener {
                     new Login();
                     dispose();
                 }
-            }
+
 
             } catch(Exception E){
                 E.printStackTrace();
