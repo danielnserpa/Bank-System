@@ -141,6 +141,8 @@ public class Withdraw extends JFrame implements ActionListener {
 
             } else if (e.getSource() == buttonSubmitWithdraw) {
 
+                // VALIDAR WITHDRAW DA MESMA FORMA QUE O DEPOSIT. TENTAR SEM USAR CHAT GPT
+
                 if (textWithdrawAmount.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Please enter the amount you wish to withdraw  ");
                 } else {

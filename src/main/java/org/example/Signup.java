@@ -24,6 +24,7 @@ public class Signup extends JFrame implements ActionListener {
     long randomDigits, randomCardNo;
     Login logInScreen;
 
+
     Signup(Login logInScreen) {
         super ("APPLICATION FORM");
         this.logInScreen = logInScreen;
