@@ -68,7 +68,7 @@ public class Deposit extends JFrame implements ActionListener {
 
             if (e.getSource() == buttonSubmitDeposit) {
                 if (textDepositAmount.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Please enter the amount you wish to deposit  ");
+                    JOptionPane.showMessageDialog(null, "Please enter the amount you wish to deposit");
                     return;
                 }
 

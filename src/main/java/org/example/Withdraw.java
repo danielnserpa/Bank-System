@@ -105,6 +105,7 @@ public class Withdraw extends JFrame implements ActionListener {
 
         try {
 
+            String amountText = textWithdrawAmount.getText();
             Date date = new Date();
             double definedWithdrawAmount = 0;
             boolean triggerWithdraw = false;
@@ -141,14 +142,25 @@ public class Withdraw extends JFrame implements ActionListener {
 
             } else if (e.getSource() == buttonSubmitWithdraw) {
 
-                // VALIDAR WITHDRAW DA MESMA FORMA QUE O DEPOSIT. TENTAR SEM USAR CHAT GPT
-
                 if (textWithdrawAmount.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Please enter the amount you wish to withdraw  ");
-                } else {
-                    definedWithdrawAmount = Double.parseDouble(textWithdrawAmount.getText());
-                    triggerWithdraw = true;
+                    JOptionPane.showMessageDialog(null, "Please enter the amount you wish to withdraw");
+                    return;
                 }
+
+                if (!amountText.matches("^\\d+(\\.\\d+)?$")) {
+                    JOptionPane.showMessageDialog(null, "Please enter a valid amount");
+                    return;
+                }
+
+                double amount = Double.parseDouble(amountText);
+
+                if (amount > 1500) {
+                    JOptionPane.showMessageDialog(null, "The maximum withdraw amount is €1500");
+                    return;
+                }
+
+                definedWithdrawAmount = Double.parseDouble(textWithdrawAmount.getText());
+                triggerWithdraw = true;
 
             } else if (e.getSource() == buttonCancelWithdraw) {
                     dispose();
