@@ -100,6 +100,16 @@ public class Changepin extends JFrame implements ActionListener {
                     return;
                 }
 
+                if (!(newPin.length() == 4)) {
+                    JOptionPane.showMessageDialog(null, "Your PIN must contain 4 numbers");
+                    return;
+                }
+
+                if (!(newPin.matches("^\\d+(\\.\\d+)?$"))) {
+                    JOptionPane.showMessageDialog(null, "Your PIN must contain 4 numbers");
+                    return;
+                }
+
                 Connect connect = new Connect();
                 ResultSet changePin = connect.statement.executeQuery("SELECT * FROM login WHERE card_no = '" +cardNo+ "'");
 
