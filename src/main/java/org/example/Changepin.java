@@ -95,6 +95,21 @@ public class Changepin extends JFrame implements ActionListener {
                 String newPin = textNewPin.getText();
                 String confirmPin = textConfirmNewPin.getText();
 
+                if (oldPin.isEmpty()) {
+                    JOptionPane.showMessageDialog(null,"Please enter your current PIN.");
+                    return;
+                }
+
+                if (newPin.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Please enter your new PIN.");
+                    return;
+                }
+
+                if (confirmPin.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Please confirm your new PIN.");
+                    return;
+                }
+
                 if (!newPin.equals(confirmPin)) {
                     JOptionPane.showMessageDialog(null, "New PIN doesn't match.");
                     return;
@@ -115,11 +130,6 @@ public class Changepin extends JFrame implements ActionListener {
 
                 if (changePin.next()) {
                     String currentPin = changePin.getString("pin");
-
-                    if (!oldPin.isEmpty()) {
-                        JOptionPane.showMessageDialog(null,"Please enter your curent PIN.");
-                        return;
-                    }
 
                     if (!oldPin.equals(currentPin)) {
                         JOptionPane.showMessageDialog(null,"Your current PIN is incorrect.");
